@@ -1,0 +1,112 @@
+# Plan de trabajo — FoodStore, Unidad 7 NoSQL
+
+## Alcance
+
+Preparar un modelo de pedidos con detalles y datos esenciales del cliente; migrar al menos cinco pedidos desde PostgreSQL a MongoDB conservando identificadores, instantes de fecha, estados, cantidades y precios históricos. Las reglas comunes están en [AGENTS.md](../AGENTS.md) y el flujo colaborativo en [CONTRIBUTING.md](../CONTRIBUTING.md).
+
+Referencia académica principal: [consigna oficial de Unidad 7](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf), leída el 2026-10-28. Etapa actual autorizada: documentar la migración ejecutada manualmente por Amanda a partir de sus capturas, sin nuevas ejecuciones ni conexiones del asistente. El [modelo propuesto](modelo_documental.md) conserva su estado pendiente de aprobación del equipo.
+
+### Precisiones de la consigna oficial frente a los documentos iniciales
+
+- No se detectaron requisitos incompatibles de modelo o entrega. La consigna 2 exige un mínimo de cinco pedidos aunque el alcance introductorio lo presenta como recomendación.
+- El PDF permite agregar pedidos de prueba si faltan registros. El equipo informó cinco y mantiene el acuerdo más restrictivo de conservar PostgreSQL sin modificaciones; no es necesario incorporar datos.
+- La consigna 6 exige que la consulta a IA mencione el modelo actual, el acceso frecuente a pedidos completos y la coherencia de cantidades y precios. Esto deberá contemplarse al completar esa etapa.
+- La consigna 7 exige una conclusión de hasta 200 palabras sustentada en al menos dos criterios técnicos, evaluando PostgreSQL, MongoDB para el subconjunto o combinación.
+- El PDF final debe incluir evidencias legibles y código con instrucciones efectivamente ejecutadas; excluye imágenes decorativas, transcripciones extensas y datos personales reales. Las plantillas actuales aún no constituyen esa entrega.
+- La página 3 aclara que los nombres teóricos son ilustrativos: se emplean las tablas y columnas reales aportadas por Amanda. El requisito de datos esenciales del cliente no precisa atributos mínimos; la suficiencia de ID más alias queda pendiente de consulta.
+
+## Responsabilidades acordadas
+
+| Integrante | Consignas | Trabajo |
+|---|---|---|
+| Amanda | 1, 2 y 3 | Modelo documental, migración y reglas de integridad |
+| Mateo | 4 y 5 | Consultas y comparación entre motores |
+| Lucas | 6 y 7 | Consulta a IA, contraste y borrador de conclusión |
+
+El equipo completo revisa la conclusión y el informe final. Cada integrante trabaja en su rama y presenta un pull request.
+
+## Secuencia prevista
+
+1. Preparar estructura, reglas y plantillas (etapa inicial completada).
+2. Revisar el diseño redactado para consignas 1 y 3: correspondencia de campos, tipos BSON, ejemplo e integridad. Aprobar o ajustar destino MongoDB, cliente y método en [decisiones.md](decisiones.md).
+3. Solo tras la revisión y un nuevo pedido de implementación, preparar la migración con detección de IDs existentes, sin reemplazos silenciosos. La aprobación documental no autoriza ejecutar.
+4. Con autorización específica para motor y destino, ejecutar la migración y verificar conservación de datos y cantidades.
+5. Preparar y ejecutar, con autorización, las cuatro consultas MongoDB: a) identificador y estado; b) estado existente; c) producto contenido; d) total superior a un umbral justificado. Comparar b) y c) en ambos motores por cantidad e IDs de pedidos.
+6. Consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles.
+7. Integrar evidencias anonimizadas e informe, revisar grupalmente y preparar entrega.
+
+## Estado real
+
+Registro de preparación: 2026-10-28. Las siguientes comprobaciones fueron aportadas por el equipo y no se repitieron en esta sesión:
+
+- Windows 11; cliente psql 17.11 usado desde Git Bash.
+- MongoDB Server en ejecución; Compass conectado; ping con resultado `ok: 1`.
+- Base de origen `foodstore_dev`: cinco pedidos, siete líneas de detalle; todos los pedidos en estado `ENTREGADO`.
+- Producto ID 1 presente en pedidos 1, 3 y 5.
+- Precios históricos en `detalle_pedido.precio_unitario`.
+- Estructura observada: `pedido` (id, id_cliente, fecha_hora timestamptz, forma_pago, estado, observaciones); `detalle_pedido` (id_pedido, id_producto, cantidad, precio_unitario, subtotal generado como cantidad × precio_unitario); `cliente` (id, nombre_completo, email, telefono, direccion, created_at); `producto` (id, id_categoria, nombre, descripcion, precio_lista, stock, activo, created_at).
+- Clave primaria de detalle: (id_pedido, id_producto); cantidad > 0 y precio_unitario >= 0.
+
+Ampliación de datos aportada por Amanda en el pedido de diseño: `precio_unitario` es `numeric(10,2)`; se conocen fechas, formas de pago, clientes por ID y las siete líneas. Sus totales calculados esperados, sin ejecución de motores, se documentan en el modelo: pedidos 1–5, respectivamente 2800.00, 1500.00, 3150.00, 6200.00 y 1050.00. No se conocen observaciones ni datos personales; no se completan por suposición.
+
+Estado de la preparación documental:
+
+- [x] Estructura, reglas de colaboración y plantillas creadas.
+- [x] Consigna oficial leída y precisiones académicas registradas.
+- [x] Diseño de consignas 1 y 3 redactado, con fuentes oficiales y ejemplo no ejecutado; [aporte de Amanda para consignas 1–3](../informe/aporte_amanda.md) redactado, pendiente de revisión grupal.
+- [x] [Script de extracción](../postgresql/extraccion_pedidos.sql) preparado y revisado estáticamente, sin conexión a motores.
+- [x] Amanda informó que ejecutó manualmente la extracción; el asistente no la ejecutó.
+- [x] Archivo de extracción comprobado localmente: JSON UTF-8, contexto, controles, cinco pedidos, siete líneas y fórmulas.
+- [x] Versión PostgreSQL 17.11 registrada según el contexto del archivo de extracción.
+- [ ] Versiones de MongoDB y Compass registradas.
+- [x] Destino, tipos BSON, tratamiento del cliente y método de migración implementados y documentados; aprobación grupal pendiente.
+- [ ] Modelo y reglas de integridad revisados y aprobados por el equipo.
+- [ ] Suficiencia de cliente con ID más alias confirmada con equipo/docente.
+- [x] Tipos/rangos y precisión de fecha del lote comprobados según la extracción y los controles documentados; tipos BSON verificados según las evidencias de migración.
+- [x] Código de migración preparado desde el archivo real, con instrucciones y verificaciones posteriores.
+- [x] Amanda informó la ejecución manual del script en Compass; se inspeccionaron las capturas de inserción y verificación.
+- [x] Migración de cinco pedidos y siete líneas ejecutada manualmente por Amanda y verificada según las evidencias inspeccionadas.
+- [ ] Consignas 4–5: consultas ejecutadas y comparación documentada (Mateo).
+- [ ] Consignas 6–7: consulta a IA, contraste de dos afirmaciones y borrador de conclusión completados (Lucas).
+- [ ] Informe final integrado y conclusión revisados por el equipo.
+
+## Entregables
+
+### Extracción preparada y ejecución manual documentada mediante archivo
+
+El archivo [postgresql/extraccion_pedidos.sql](../postgresql/extraccion_pedidos.sql) usa una transacción `REPEATABLE READ, READ ONLY` con `ROLLBACK` final sobre `foodstore_dev`, esquema `public`, pedidos 1–5. Comprueba base y muestra versión del servidor en el informe. Conserva pedidos o líneas faltantes mediante `LEFT JOIN` y `FULL JOIN`, informa existencia de referencias, duplicados, cantidades, importes y fórmulas. Las referencias de cinco pedidos y siete detalles proceden de Amanda, no de una ejecución del asistente.
+
+La salida es un informe JSON con controles y un arreglo `extraccion` ordenado por pedido y producto. IDs e importes se serializan como texto; los totales se obtienen mediante aritmética `NUMERIC`. Las fechas se muestran en ISO 8601 UTC con seis cifras fraccionarias para no ocultar microsegundos. Una anomalía bloquea la extracción (`null`), incluidas fechas submilisegundo o referencias previas que ya no coincidan; los controles permanecen visibles para revisión. No genera BSON ni instrucciones de inserción.
+
+La base de diseño indicada por Amanda para preparar este script es `foodstore_unidad7.pedidos`, cliente con ID y alias sintético, Long para IDs, Int32 para cantidades, Date para fechas y Decimal128 para importes. Esto no se registra como aprobación del diseño por el equipo. **Se excluyen todas las observaciones del subconjunto**, además de nombres y contactos personales del cliente: no son necesarios para esta extracción y pueden contener información sensible. El nombre del producto es descriptivo y actual; el precio se toma del detalle histórico.
+
+Revisión documental: los enlaces relativos de los tres documentos de diseño resuelven a sus archivos y no se encontraron escapes Markdown incorrectos en los textos guardados; no se alteraron modelo ni decisiones. No se modificaron los archivos de consultas de Mateo.
+
+Documentación oficial usada para la revisión estática inicial (consulta: 2026-10-28): [BEGIN](https://www.postgresql.org/docs/17/sql-begin.html), [JSON](https://www.postgresql.org/docs/17/functions-json.html), [fechas y date_trunc](https://www.postgresql.org/docs/17/functions-datetime.html), [formato de fechas](https://www.postgresql.org/docs/17/functions-formatting.html) y [psql](https://www.postgresql.org/docs/17/app-psql.html). En esa preparación no se conectó a un servidor. La ejecución posterior fue realizada manualmente por Amanda y su archivo se comprobó como se detalla a continuación.
+
+### Extracción comprobada y migración preparada — 2026-10-28
+
+Al listar `evidencias/extraccion_*.json` solo se encontró [extraccion_20261028_170446.json](../evidencias/extraccion_20261028_170446.json); por nombre es la más reciente disponible. Aunque Amanda mencionó una nueva ejecución, no se encontró un segundo archivo y no se presume su contenido. SHA-256 del original: `3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243`.
+
+Comprobaciones locales sobre el archivo: JSON UTF-8 válido, sin claves duplicadas; contexto `foodstore_dev.public`, `repeatable read`, `solo_lectura: on`; controles generales verdaderos incluido `extraer`; cinco pedidos con IDs 1–5 y siete líneas. Los controles detallados informan referencias existentes, tipos bigint/integer y ausencia de submilisegundos; se comprobaron además cantidades, productos sin duplicados, fórmulas y totales mediante aritmética decimal exacta sobre los valores del archivo. El contexto registra servidor PostgreSQL 17.11 y fecha UTC `2026-10-28T20:04:47.783674Z`. Son comprobaciones de una evidencia de Amanda, no una nueva ejecución del asistente en PostgreSQL.
+
+Se preparó [mongodb/migracion_pedidos.js](../mongodb/migracion_pedidos.js), que lee el archivo real y comprueba su hash antes de generar documentos BSON. Valida el lote completo, calcula con BigInt en centavos, bloquea pérdida de precisión temporal y comprueba todos los IDs destino antes de insertar ordenadamente. Incluye modo local `validar`, modo `insertar` y modo de lectura `verificar`. Se exige conexión con `retryWrites=false`; una inserción ordenada puede dejar una carga parcial y no hay recuperación automática.
+
+Las [instrucciones de MongoDB](../mongodb/README.md) explican ejecución manual desde Compass y alternativa externa si la shell integrada restringe archivos o módulos; no se supone mongosh externo instalado. La comprobación posterior incluye cinco documentos, siete líneas, tipos BSON evaluados en servidor y correspondencia campo por campo con el lote fuente. La preparación inicial fue seguida por la ejecución manual de Amanda, documentada a continuación. No se cambia el estado de aprobación grupal ni se modifican evidencias originales o consultas de Mateo.
+
+### Migración ejecutada por Amanda y revisión documental — 2026-10-28
+
+Se inspeccionaron visualmente [migracion_insercion.png](../evidencias/migracion_insercion.png) y [migracion_verificacion.png](../evidencias/migracion_verificacion.png). La primera muestra destino `foodstore_unidad7.pedidos`, validación local satisfactoria, `insercionConfirmada: true` e IDs `Long` 1–5. La segunda muestra `verificacion: satisfactoria`, cinco pedidos, siete líneas, `tiposBSON: correctos` y correspondencia con todos los campos del lote fuente. Ambas refieren a `extraccion_20261028_170446.json` y al SHA-256 consignado arriba, que se comprobó nuevamente sobre el archivo local.
+
+El [resultado de migración](resultado_migracion.md) registra procedimiento, resultados y límites. Amanda realizó la ejecución en Compass; el asistente revisó archivos y capturas, sin conectarse a motores. Para Compass fue necesaria la importación explícita de `Buffer` mediante `require("buffer")`, sin cambiar la evidencia ni su hash. La hora exacta de migración, las versiones de MongoDB/Compass y la configuración efectiva de `retryWrites` no se acreditan en las imágenes.
+
+Las verificaciones de migración no completan las consignas 4–5 ni 6–7; esas tareas y la aprobación grupal del diseño siguen pendientes.
+
+### Entrega académica prevista
+
+- PDF de hasta cinco páginas, sin contar código adjunto, con conclusión de hasta 200 palabras.
+- [consultas_mongodb.js](../mongodb/consultas_mongodb.js) y [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql): actualmente solo comentarios.
+- Modelo, comparación y contraste en las plantillas de `docs/`; evidencias según [su guía](../evidencias/README.md).
+- Esquema y requisitos del informe en [informe/README.md](../informe/README.md).
+
+Esta documentación no autoriza nuevas conexiones ni ejecuciones en motores. El diseño conserva su estado propuesto; la extracción manual de Amanda está documentada mediante archivo y la migración ejecutada y verificada mediante capturas inspeccionadas. Permanecen pendientes las consultas, la comparación, el análisis de IA y la revisión grupal del informe. No se modificaron los archivos de consultas ni los documentos de otros integrantes.

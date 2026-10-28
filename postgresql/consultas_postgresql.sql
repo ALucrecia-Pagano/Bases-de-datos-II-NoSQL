@@ -1,0 +1,8 @@
+-- FoodStore — Unidad 7 NoSQL. Responsable: Mateo, consigna 5.
+-- Plantilla pendiente: solo comentarios; no contiene instrucciones ejecutables.
+-- Preparar consultas de lectura equivalentes a las consultas MongoDB:
+-- b) Filtrar pedidos por un estado existente.
+-- c) Buscar pedidos que contengan un producto.
+-- Comparar cantidades e identificadores de pedidos en ambos motores.
+-- Conservar foodstore_dev sin modificaciones y usar precios históricos del detalle.
+-- Guardar este archivo no autoriza conectarse ni ejecutarlo.

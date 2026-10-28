@@ -1,0 +1,25 @@
+# Variables y credenciales locales; conservar el ejemplo publicable.
+.env
+.env.*
+!.env.example
+*.local
+credentials.local.*
+credenciales.local.*
+.pgpass
+pgpass.conf
+*.pem
+*.key
+
+# Respaldos, registros y temporales.
+*.dump
+*.backup
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+Thumbs.db
+.DS_Store
+
+# Las evidencias de texto, JSON y capturas se conservan por defecto.

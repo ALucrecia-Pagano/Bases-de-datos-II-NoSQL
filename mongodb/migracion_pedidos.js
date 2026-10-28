@@ -1,4 +1,5 @@
-// FoodStore Unidad 7. Preparado, NO ejecutado contra MongoDB.
+// FoodStore Unidad 7. Migración ejecutada manualmente por Amanda y documentada.
+// Registro: docs/resultado_migracion.md. El asistente no ejecutó los motores.
 // Fuente fija: evidencias/extraccion_20261028_170446.json (bytes originales).
 // SHA-256: 3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243
 // Leer mongodb/README.md. No crea conexiones ni altera la configuración del destino.

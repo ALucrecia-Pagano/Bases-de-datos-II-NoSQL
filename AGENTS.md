@@ -20,12 +20,20 @@ Leer [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md) y el [plan de tr
 - Consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles del laboratorio.
 - Entregar un PDF de hasta cinco páginas, sin contar código adjunto, con conclusión de hasta 200 palabras; adjuntar `mongodb/consultas_mongodb.js` y `postgresql/consultas_postgresql.sql`, o equivalentes.
 
-La etapa inicial solo prepara estructura, reglas y plantillas. No resuelve consignas, implementa validadores o consultas, migra datos ni genera el PDF.
+## Antecedente: preparación inicial
+
+La etapa inicial se limitó a preparar estructura, reglas y plantillas, sin resolver consignas, implementar validadores o consultas, migrar datos ni generar el PDF. En esa preparación se conservó el README de Amanda y solo se propusieron correcciones o enlaces. Estas limitaciones describen esa etapa histórica; las reglas permanentes de autorización, ejecución, protección de datos y Git se mantienen en las secciones siguientes.
+
+## Estado documentado actual
+
+Amanda ejecutó manualmente la extracción y la migración a `foodstore_unidad7.pedidos`: cinco pedidos y siete líneas, con verificación documentada. El destino, los tipos BSON (IDs Long, cantidades Int32, fechas Date e importes Decimal128), el cliente con ID y alias sintético y el método de extracción de solo lectura e inserción ordenada ya están implementados y documentados. El asistente revisó archivos y evidencias; no ejecutó los motores.
+
+Consultar el [resultado de la migración](docs/resultado_migracion.md) para las evidencias y sus límites, y el [plan vigente](docs/plan_trabajo.md) para los pendientes. La aprobación grupal del diseño y la confirmación académica de la suficiencia del cliente con ID más alias siguen pendientes. Las consignas 4–7 y el informe final no se consideran completados.
 
 ## Forma de trabajo
 
 - Antes de actuar, leer las instrucciones aplicables, revisar el directorio, la rama, el estado de Git y los archivos existentes.
-- Trabajar exclusivamente dentro de este repositorio, por etapas y dentro de la tarea solicitada. Conservar el README de Amanda; en esta preparación solo proponer correcciones o enlaces.
+- Trabajar exclusivamente dentro de este repositorio, por etapas y dentro de la tarea solicitada.
 - Un pedido explícito autoriza las ediciones necesarias dentro de su alcance; no pedir confirmación por cada cambio rutinario. Consultar antes de ampliar el alcance, reemplazar decisiones acordadas o realizar acciones destructivas.
 - No sobrescribir cambios ajenos ni descartar trabajo pendiente. Leer antes de editar e integrar contenido válido; informar conflictos antes de reemplazarlo.
 - Mantener soluciones sencillas y adecuadas al nivel de la materia. No agregar herramientas, dependencias, automatizaciones ni archivos de herramientas innecesarios; no crear una licencia sin decisión expresa del equipo.
@@ -39,7 +47,7 @@ La etapa inicial solo prepara estructura, reglas y plantillas. No resuelve consi
 - Diseñar la migración para detectar IDs existentes y detenerse ante conflictos, sin reemplazar documentos silenciosamente.
 - Conservar IDs de origen, instantes de fecha, estados, cantidades y precios históricos. Tomar los precios de `detalle_pedido.precio_unitario`.
 - Definir y justificar tipos BSON para identificadores, fechas e importes antes de implementar la migración, evitando pérdidas de precisión.
-- Resolver explícitamente la representación de datos esenciales del cliente sin publicar información personal real. El nombre de la base y colección MongoDB, los tipos BSON, el tratamiento del cliente y el método de migración siguen pendientes.
+- Resolver explícitamente la representación de datos esenciales del cliente sin publicar información personal real. El destino, los tipos BSON, el tratamiento del cliente y el método están implementados y documentados según el estado actual indicado arriba; esto no implica aprobación grupal ni aceptación docente.
 
 ## Git y colaboración
 

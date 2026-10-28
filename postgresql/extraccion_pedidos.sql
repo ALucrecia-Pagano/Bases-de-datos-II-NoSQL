@@ -1,4 +1,5 @@
--- FoodStore, Unidad 7. Extracción preparada; NO ejecutada.
+-- FoodStore, Unidad 7. Extracción ejecutada manualmente por Amanda y documentada.
+-- Registro: docs/resultado_migracion.md. El asistente no ejecutó los motores.
 -- Origen previsto: foodstore_dev, esquema public, pedidos 1 a 5.
 -- Destino previsto: foodstore_unidad7.pedidos; este SQL no lo crea ni carga.
 -- Referencias PREVIAS de Amanda: cinco pedidos, siete detalles, ENTREGADO.

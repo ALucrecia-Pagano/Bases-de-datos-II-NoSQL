@@ -1,6 +1,8 @@
 # Registro de evidencias
 
-Aplicar las [reglas del proyecto](../AGENTS.md). Esta carpeta todavía no contiene resultados nuevos del laboratorio.
+Aplicar las [reglas del proyecto](../AGENTS.md). Esta carpeta contiene la [extracción JSON](extraccion_20261028_170446.json) y las capturas de [inserción](migracion_insercion.png) y [verificación](migracion_verificacion.png) de la migración ejecutada manualmente por Amanda. El [resultado de la migración](../docs/resultado_migracion.md) registra su contexto y límites; la revisión del asistente fue documental y visual, sin ejecutar motores.
+
+Estas evidencias corresponden a la extracción y migración del lote; no sustituyen las consultas y comparaciones académicas de las consignas 4–5 ni el trabajo de las consignas 6–7, que siguen pendientes.
 
 Para cada ejecución autorizada registrar:
 

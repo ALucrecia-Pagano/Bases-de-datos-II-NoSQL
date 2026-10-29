@@ -32,7 +32,7 @@ La etapa inicial se limitó a preparar estructura, reglas y plantillas, sin reso
 
 Amanda ejecutó manualmente la extracción y la migración a `foodstore_unidad7.pedidos`: cinco pedidos y siete líneas, con verificación documentada. El destino, los tipos BSON (IDs Long, cantidades Int32, fechas Date e importes Decimal128), el cliente con ID y alias sintético y el método de extracción de solo lectura e inserción ordenada ya están implementados y documentados. El asistente revisó archivos y evidencias; no ejecutó los motores.
 
-Consultar el [resultado de la migración](TP1_FoodStore_NoSQL/docs/resultado_migracion.md) para las evidencias y sus límites, y el [plan vigente](TP1_FoodStore_NoSQL/docs/plan_trabajo.md) para los pendientes. La aprobación grupal del diseño y la confirmación académica de la suficiencia del cliente con ID más alias siguen pendientes. Las consignas 4–7 y el informe final no se consideran completados.
+Consultar el [resultado de la migración](TP1_FoodStore_NoSQL/docs/resultado_migracion.md) para las evidencias y sus límites, y el [plan vigente](TP1_FoodStore_NoSQL/docs/plan_trabajo.md) para los pendientes. La aprobación grupal del diseño y la confirmación académica de la suficiencia del cliente con ID más alias siguen pendientes. Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5. Ver [comparación y límites](TP1_FoodStore_NoSQL/docs/comparacion_resultados.md). Las consignas 6–7 y el informe final siguen pendientes.
 
 ## Forma de trabajo
 

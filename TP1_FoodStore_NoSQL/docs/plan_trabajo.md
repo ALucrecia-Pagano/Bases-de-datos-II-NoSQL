@@ -1,10 +1,14 @@
 # Plan de trabajo — FoodStore, Unidad 7 NoSQL
 
+Las atribuciones de ejecución a Amanda y Mateo y las referencias a sus máquinas corresponden a lo informado por los integrantes; Git y los JSON no demuestran por sí solos autoría ni máquina de ejecución. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal.
+
+Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5.
+
 ## Alcance
 
 Preparar un modelo de pedidos con detalles y datos esenciales del cliente; migrar al menos cinco pedidos desde PostgreSQL a MongoDB conservando identificadores, instantes de fecha, estados, cantidades y precios históricos. Las reglas comunes están en [AGENTS.md](../../AGENTS.md) y el flujo colaborativo en [CONTRIBUTING.md](../../CONTRIBUTING.md).
 
-Referencia académica principal: [consigna oficial de Unidad 7](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf), leída el 2026-10-28. Etapa actual autorizada: documentar la migración ejecutada manualmente por Amanda a partir de sus capturas, sin nuevas ejecuciones ni conexiones del asistente. El [modelo propuesto](modelo_documental.md) conserva su estado pendiente de aprobación del equipo.
+Referencia académica principal: [consigna oficial de Unidad 7](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf), leída el 2026-10-28. Según lo informado por los integrantes, la migración de Amanda fue ejecutada manualmente el 2026-10-28 a partir de su extracción y sus capturas. Posteriormente, Mateo realizó un trabajo independiente el 2026-10-29 con otra extracción y sus propias evidencias. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal. El [modelo propuesto](modelo_documental.md) conserva su estado pendiente de aprobación del equipo.
 
 ### Precisiones de la consigna oficial frente a los documentos iniciales
 
@@ -30,8 +34,8 @@ El equipo completo revisa la conclusión y el informe final. Cada integrante tra
 1. **Realizado:** preparación de estructura, reglas y plantillas.
 2. **Redactado e implementado:** diseño de consignas 1 y 3, con correspondencia, tipos BSON, ejemplo e integridad. **Pendiente:** revisión y aprobación grupal de destino, cliente y método según [decisiones.md](decisiones.md), y confirmación de suficiencia académica de ID más alias.
 3. **Realizado:** extracción y código de migración con detección de IDs existentes, sin reemplazos silenciosos. La aprobación documental no autoriza nuevas ejecuciones.
-4. **Realizado por Amanda:** ejecución manual de la extracción y migración, con conservación de datos y cantidades verificada según las evidencias del [resultado](resultado_migracion.md). No repetir la inserción.
-5. **Pendiente (Mateo, consignas 4–5):** preparar y ejecutar, con autorización, las cuatro consultas MongoDB: a) identificador y estado; b) estado existente; c) producto contenido; d) total superior a un umbral justificado. Comparar b) y c) en ambos motores por cantidad e IDs de pedidos.
+4. **Realizado por Amanda:** ejecución manual de su extracción y migración el 2026-10-28, con conservación de datos y cantidades verificada según las evidencias del [resultado](resultado_migracion.md). No repetir esa inserción.
+5. **Aporte recibido, revisión pendiente de completar evidencias:** ejecución informada por Mateo; trabajo independiente del 2026-10-29 con `extraccion_20261029_102959.json`, sus evidencias y las consultas de MongoDB y PostgreSQL de las consignas 4–5. No reemplaza la migración de Amanda.
 6. **Pendiente (Lucas, consignas 6–7):** consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles; redactar conclusión para revisión grupal.
 7. **Pendiente (equipo):** integrar el aporte de Amanda ya redactado, las evidencias y los trabajos restantes en el PDF, revisar grupalmente y preparar entrega.
 
@@ -57,16 +61,17 @@ Estado de la preparación documental:
 - [x] [Script de extracción](../postgresql/extraccion_pedidos.sql) preparado y revisado estáticamente, sin conexión a motores.
 - [x] Amanda informó que ejecutó manualmente la extracción; el asistente no la ejecutó.
 - [x] Archivo de extracción comprobado localmente: JSON UTF-8, contexto, controles, cinco pedidos, siete líneas y fórmulas.
-- [x] Versión PostgreSQL 17.11 registrada según el contexto del archivo de extracción.
+- [x] Versión PostgreSQL 17.11 registrada según el contexto de la extracción de Amanda.
 - [ ] Versiones de MongoDB y Compass registradas.
 - [x] Destino, tipos BSON, tratamiento del cliente y método de migración implementados y documentados; aprobación grupal pendiente.
 - [ ] Modelo y reglas de integridad revisados y aprobados por el equipo.
 - [ ] Suficiencia de cliente con ID más alias confirmada con equipo/docente.
 - [x] Tipos/rangos y precisión de fecha del lote comprobados según la extracción y los controles documentados; tipos BSON verificados según las evidencias de migración.
-- [x] Código de migración preparado desde el archivo real, con instrucciones y verificaciones posteriores.
-- [x] Amanda informó la ejecución manual del script en Compass; se inspeccionaron las capturas de inserción y verificación.
-- [x] Migración de cinco pedidos y siete líneas ejecutada manualmente por Amanda y verificada según las evidencias inspeccionadas.
-- [x] Consignas 4–5: consultas ejecutadas y comparación documentada (Mateo).
+- [x] Código de migración preparado desde el archivo real de Amanda, con instrucciones y verificaciones posteriores; el historial conserva una revisión posterior configurada con la extracción de Mateo.
+- [x] Amanda informó la ejecución manual de su migración en Compass; se inspeccionaron sus capturas de inserción y verificación.
+- [x] Migración de Amanda de cinco pedidos y siete líneas ejecutada el 2026-10-28 y verificada según sus evidencias inspeccionadas.
+- [x] Consignas 4–5: consultas y comparación aportadas, con ejecución informada por Mateo.
+- [ ] Consignas 4–5: completar evidencias MongoDB de c) y d) y cerrar su revisión.
 - [ ] Consignas 6–7: consulta a IA, contraste de dos afirmaciones y borrador de conclusión completados (Lucas).
 - [ ] Informe final integrado y conclusión revisados por el equipo.
 
@@ -102,15 +107,11 @@ El [resultado de migración](resultado_migracion.md) registra procedimiento, res
 
 Las verificaciones de migración no completan por sí solas las consignas 4–5 ni 6–7. Las consignas 4–5 se documentan en la sección siguiente; 6–7 y la aprobación grupal del diseño siguen pendientes.
 
-### Consultas 4–5 ejecutadas por Mateo — 2026-10-29
+### Consultas 4–5: ejecución informada por Mateo — 2026-10-29
 
-Se ejecutaron las cuatro consultas MongoDB y las equivalentes PostgreSQL de b) y c)
-en instalaciones locales. MongoDB Server fue 9.0.4 con `mongosh` 2.14.0 y
-PostgreSQL fue 17.10 mediante `psql`. La migración local se validó e insertó en
-`foodstore_unidad7.pedidos`, con cinco pedidos, siete líneas y verificación
-satisfactoria de tipos BSON y correspondencia con la extracción nueva.
+Mateo informó la ejecución de las cuatro consultas MongoDB y las equivalentes PostgreSQL de b) y c) en su entorno local, así como la validación e inserción de su lote. La captura de verificación muestra cinco pedidos, siete líneas, tipos BSON correctos y correspondencia con la extracción del 29/10; no acredita por sí sola la inserción previa. MongoDB Server 9.0.4 y mongosh 2.14.0 son versiones informadas, no comprobadas en las capturas disponibles. PostgreSQL 17.10 consta en el contexto del JSON del 29/10; el uso de psql se ve en la captura SQL.
 
-Resultados observados:
+Resultados aportados por Mateo (respaldo visual parcial en MongoDB):
 
 - MongoDB y PostgreSQL devolvieron los IDs 1–5 para el estado `ENTREGADO`.
 - Ambos motores devolvieron los IDs 1, 3 y 5 para el producto ID 1.
@@ -129,4 +130,4 @@ evidencias legibles junto con el informe; no deben incluir contraseñas.
 - Modelo, comparación y contraste en los documentos de `docs/`; evidencias según [su guía](../evidencias/README.md).
 - Esquema y requisitos del informe en [informe/README.md](../informe/README.md).
 
-Esta documentación no autoriza nuevas conexiones ni ejecuciones en motores. El diseño conserva su estado propuesto; la extracción local de Mateo, la migración y las consultas de las consignas 4–5 quedan documentadas con sus resultados y límites. Permanecen pendientes el análisis de IA, la conclusión y la revisión grupal del informe.
+Esta documentación no autoriza nuevas conexiones ni ejecuciones en motores. El diseño conserva su estado propuesto; la extracción local de Mateo, la migración y las consultas de las consignas 4–5 quedan documentadas con sus resultados y límites. Permanecen pendientes completar las evidencias MongoDB de c) y d) para cerrar la revisión de 4–5, el análisis de IA, la conclusión y la revisión grupal del informe.

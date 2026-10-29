@@ -1,10 +1,22 @@
 # Traspaso al equipo — FoodStore, Unidad 7
 
+Las atribuciones de ejecución a Amanda y Mateo y las referencias a sus máquinas corresponden a lo informado por los integrantes; Git y los JSON no demuestran por sí solos autoría ni máquina de ejecución. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal.
+
+Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5.
+
 Registro: 2026-10-28. Aplicar [AGENTS.md](../../AGENTS.md), [CLAUDE.md](../../CLAUDE.md) y la [guía de colaboración](../../CONTRIBUTING.md). Referencia académica principal: [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf). Este documento organiza tareas pendientes; no registra nuevas ejecuciones ni autoriza operaciones en motores.
 
 ## Estado recibido y modelo implementado
 
 Amanda ejecutó manualmente la migración en Compass. Las [capturas de inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion_amanda.png), inspeccionadas en la revisión documental, muestran inserción confirmada de los IDs Long 1–5, cinco pedidos, siete líneas, tipos BSON correctos y correspondencia con todos los campos del lote fuente. Ver [resultado y límites](resultado_migracion.md). La aprobación grupal del diseño sigue pendiente; la verificación de migración no completa las consignas 4–7.
+
+La migración de Amanda del 2026-10-28 y el trabajo independiente de Mateo del
+2026-10-29, según lo informado por los integrantes, se realizaron en sus respectivas
+máquinas. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal. La extracción, el hash y las evidencias de Amanda no se
+sustituyen por la extracción ni por las evidencias de Mateo. La captura de
+verificación de Amanda fue renombrada a
+`migracion_verificacion_amanda.png`; ese renombrado no representa una nueva
+ejecución.
 
 Destino implementado: `foodstore_unidad7.pedidos`. Cada pedido contiene `_id`, `fecha_hora`, `forma_pago`, `estado`, objeto `cliente`, arreglo `lineas` y `total`.
 
@@ -25,7 +37,8 @@ Se excluyeron observaciones y nombres/contactos personales del cliente. El alias
 |---|---|
 | [modelo_documental.md](modelo_documental.md) y [decisiones.md](decisiones.md) | Diseño inicial, implementación documentada y revisión grupal pendiente |
 | [extraccion_pedidos.sql](../postgresql/extraccion_pedidos.sql) | Extracción PostgreSQL de solo lectura del subconjunto 1–5 |
-| [extraccion_20261028_170446.json](../evidencias/extraccion_20261028_170446.json) | Fuente real e inmutable del lote; controles y datos de intercambio |
+| [extraccion_20261028_170446.json](../evidencias/extraccion_20261028_170446.json) | Fuente real e inmutable de la migración de Amanda; controles y datos de intercambio |
+| [extraccion_20261029_102959.json](../evidencias/extraccion_20261029_102959.json) | Fuente de la ejecución independiente de Mateo; controles y datos de intercambio |
 | [migracion_pedidos.js](../mongodb/migracion_pedidos.js) y [guía MongoDB](../mongodb/README.md) | Conversión, comprobación de IDs, inserción y verificación; modos separados |
 | [resultado_migracion.md](resultado_migracion.md) | Ejecución manual de Amanda y evidencia de resultados |
 | [aporte_amanda.md](../informe/aporte_amanda.md) | Texto breve para integrar al PDF grupal |
@@ -52,7 +65,7 @@ No es necesario volver a consultar PostgreSQL para reconstruir desde esta extrac
 
 ## Mateo — consignas 4 y 5
 
-Archivos asignados: [consultas_mongodb.js](../mongodb/consultas_mongodb.js), [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql) y [comparacion_resultados.md](comparacion_resultados.md). Las consultas y la comparación fueron ejecutadas por Mateo el 2026-10-29; deben integrarse sus capturas legibles al informe.
+Archivos asignados: [consultas_mongodb.js](../mongodb/consultas_mongodb.js), [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql) y [comparacion_resultados.md](comparacion_resultados.md). Las consultas y la comparación fueron aportadas por Mateo, quien informó su ejecución el 2026-10-29; deben completarse las evidencias MongoDB de c) y d) antes de cerrar la revisión e integrar las capturas legibles al informe.
 
 Consigna 4: registrar las cuatro consultas MongoDB y sus resultados: a) todos los pedidos con identificador y estado; b) estado existente; c) producto en el arreglo de líneas; d) total superior a un umbral elegido y justificado. Usar los nombres de campos implementados e importes Decimal128 desde texto; no convertir dinero a Number.
 

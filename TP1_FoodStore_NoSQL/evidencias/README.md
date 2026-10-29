@@ -1,16 +1,36 @@
 # Registro de evidencias
 
-Aplicar las [reglas del proyecto](../../AGENTS.md). Esta carpeta contiene las
-[extracciones JSON](extraccion_20261028_170446.json) y
-[extraccion_20261029_102959.json], las capturas de [inserción](migracion_insercion.png)
-y [verificación de Amanda](migracion_verificacion_amanda.png) de la migración
-ejecutada manualmente por Amanda, y las capturas de [MongoDB](consultas_mongodb_consignas_4_5.png),
-[PostgreSQL](consultas_postgresql_consignas_4_5.png) y [verificación de Mateo](migracion_verificacion_mateo_20261029.png)
-de las consultas y comparación de las consignas 4–5 ejecutadas por Mateo. El
-[resultado de la migración](../docs/resultado_migracion.md) registra su contexto
-y límites; la comparación está documentada en
-[comparacion_resultados.md](../docs/comparacion_resultados.md). La revisión del
-asistente fue documental y visual, sin ejecutar motores.
+Las atribuciones de ejecución a Amanda y Mateo y las referencias a sus máquinas corresponden a lo informado por los integrantes; Git y los JSON no demuestran por sí solos autoría ni máquina de ejecución. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal.
+
+Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5.
+
+Aplicar las [reglas del proyecto](../../AGENTS.md). Esta carpeta conserva
+evidencias de dos trabajos independientes, según lo informado por los integrantes.
+
+## Amanda — extracción y migración del 2026-10-28
+
+- Extracción: `extraccion_20261028_170446.json`, con su hash histórico.
+- Evidencias: [inserción](migracion_insercion.png),
+  [verificación](migracion_verificacion_amanda.png) y
+  [documento del pedido 1](pedido_1_documento.png).
+- Responsable: Amanda.
+- Registro: [resultado_migracion.md](../docs/resultado_migracion.md).
+- El renombrado posterior de la captura de verificación no representa una nueva
+  ejecución ni una segunda migración de Amanda.
+
+## Mateo — trabajo independiente del 2026-10-29
+
+- Extracción: `extraccion_20261029_102959.json`, con su hash histórico.
+- Evidencias: [MongoDB](consultas_mongodb_consignas_4_5.png),
+  [PostgreSQL](consultas_postgresql_consignas_4_5.png) y
+  [verificación de Mateo](migracion_verificacion_mateo_20261029.png).
+- Responsable: Mateo.
+- Registro: [comparacion_resultados.md](../docs/comparacion_resultados.md).
+- Este trabajo no reemplaza ni modifica la migración documentada de Amanda.
+
+Las dos extracciones y sus evidencias se conservan separadas aunque describan
+el mismo subconjunto de pedidos. La revisión del asistente fue documental y
+visual, sin ejecutar motores ni migraciones.
 
 Estas evidencias corresponden a la extracción, migración y consultas del lote;
 no sustituyen el contraste de IA ni el trabajo de las consignas 6–7, que siguen

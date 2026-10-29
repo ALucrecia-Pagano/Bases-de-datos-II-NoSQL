@@ -1,6 +1,15 @@
 # Migración de pedidos — ejecución manual documentada
 
-Aplicar [AGENTS.md](../../AGENTS.md). Amanda ejecutó manualmente el script en Compass; el asistente inspeccionó las capturas y documentó el resultado, sin nuevas conexiones ni ejecuciones. El [resultado de la migración](../docs/resultado_migracion.md) enlaza ambas evidencias y delimita la verificación. No cambia la aprobación grupal del diseño ni completa las consultas asignadas a Mateo. Las instrucciones siguientes se conservan como referencia del procedimiento; no autorizan repetir una carga.
+Las atribuciones de ejecución a Amanda y Mateo y las referencias a sus máquinas corresponden a lo informado por los integrantes; Git y los JSON no demuestran por sí solos autoría ni máquina de ejecución. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal.
+
+Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5.
+
+Aplicar [AGENTS.md](../../AGENTS.md). Amanda informó la ejecución manual de su
+migración en Compass el 2026-10-28; el asistente inspeccionó sus capturas y
+documentó el resultado, sin nuevas conexiones ni ejecuciones. El repositorio
+también conserva el trabajo independiente de Mateo del 2026-10-29, con otra
+extracción, hash y evidencias, documentado en
+[comparacion_resultados.md](../docs/comparacion_resultados.md). No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal. Estas instrucciones no autorizan repetir ninguna carga.
 
 ## Incidencia de Buffer y resultado registrado
 
@@ -14,9 +23,11 @@ Se conservaron la comprobación UTF-8, el SHA-256 y los demás controles. Este a
 
 Las capturas de [inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion_amanda.png), inspeccionadas el 2026-10-28, muestran inserción confirmada de IDs `Long` 1–5 en `foodstore_unidad7.pedidos` y verificación satisfactoria de cinco pedidos, siete líneas, tipos BSON correctos y correspondencia completa con el lote fuente. No acreditan versiones ni la configuración efectiva de `retryWrites`. No volver a usar el modo `insertar` para repetir una verificación: el script se detendrá si esos IDs ya existen; para una comprobación posterior autorizada corresponde el modo de lectura `verificar`.
 
-## Fuente comprobada mediante archivo
+## Fuente de la ejecución de Amanda
 
-Solo se encontró `extraccion_20261028_170446.json` al revisar `evidencias/extraccion_*.json`; es la más reciente disponible por nombre. No se encontró una segunda ejecución. Se validó el archivo original sin modificarlo:
+Para la ejecución de Amanda se utilizó
+`extraccion_20261028_170446.json`. Se validó el archivo original sin
+modificarlo:
 
 - Fuente: [extraccion_20261028_170446.json](../evidencias/extraccion_20261028_170446.json).
 - SHA-256: `3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243`.
@@ -25,7 +36,17 @@ Solo se encontró `extraccion_20261028_170446.json` al revisar `evidencias/extra
 - Todos los controles generales verdaderos, incluido `extraer`; cinco pedidos (IDs 1–5) y siete líneas. Controles detallados satisfactorios y sin submilisegundos.
 - Fórmulas comprobadas localmente con aritmética decimal exacta; sin observaciones ni nombres/contactos personales del cliente.
 
-El script lee `extraccion` del archivo real; no usa las referencias esperadas como datos de carga. Comprueba el SHA-256 antes de convertir, valida el lote completo y exige IDs Long, cantidades Int32, importes Decimal128 desde texto y fechas Date sin pérdida. Los cálculos usan BigInt en centavos, adecuado a los importes de dos decimales de este lote; no usan Number ni Double para dinero. Una extracción nueva exige revisión y actualización explícita de la referencia y hash; no se elige automáticamente otro archivo al ejecutar.
+El historial conserva una revisión del script configurada con esta fuente y su
+hash. Una revisión posterior cambió `FUENTE` y `SHA` para utilizar
+`extraccion_20261029_102959.json`, correspondiente al trabajo independiente de
+Mateo. El archivo actual conserva el encabezado histórico de Amanda y la
+configuración operativa de Mateo; esta combinación no prueba que Amanda haya
+repetido su migración el 2026-10-29. El script compartido lee `extraccion` del
+archivo configurado y no usa las referencias esperadas como datos de carga.
+Comprueba el SHA-256 antes de convertir, valida el lote completo y exige IDs
+Long, cantidades Int32, importes Decimal128 desde texto y fechas Date sin
+pérdida. Una extracción nueva exige revisión y actualización explícita de la
+referencia y hash.
 
 ## Modos y precauciones concretas
 
@@ -39,7 +60,13 @@ Configurar la conexión revisada con `retryWrites=false` antes de insertar: adem
 
 ## Rutas actuales y trazabilidad
 
-`FOODSTORE_RAIZ` sigue siendo la raíz del repositorio, sin agregar `TP1_FoodStore_NoSQL`. `FUENTE` apunta ahora a `TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json`. Las instrucciones siguientes usan la ubicación actual. Las menciones previas a `evidencias/` y las rutas visibles en las capturas corresponden a la estructura histórica; esas evidencias no se modificaron ni se repitió la migración.
+`FOODSTORE_RAIZ` sigue siendo la raíz del repositorio, sin agregar
+`TP1_FoodStore_NoSQL`. La configuración operativa actual de `FUENTE` apunta a
+`TP1_FoodStore_NoSQL/evidencias/extraccion_20261029_102959.json` y su `SHA`
+corresponde a esa fuente. Esa configuración pertenece a la revisión posterior
+de Mateo; no reinterpreta ni reemplaza la configuración histórica de Amanda.
+Las rutas visibles en las capturas corresponden a sus respectivas ejecuciones y
+no se modificaron.
 
 ## Ejecución manual desde la shell de Compass
 

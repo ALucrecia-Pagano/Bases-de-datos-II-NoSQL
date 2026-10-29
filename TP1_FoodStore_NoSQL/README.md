@@ -1,5 +1,9 @@
 # FoodStore — Unidad 7: NoSQL
 
+Las atribuciones de ejecución a Amanda y Mateo y las referencias a sus máquinas corresponden a lo informado por los integrantes; Git y los JSON no demuestran por sí solos autoría ni máquina de ejecución. No deben presentarse como una única ejecución; ambos aportes se integran en la entrega grupal.
+
+Las consultas y la comparación de las consignas 4–5 fueron aportadas, con ejecución informada por Mateo. La captura MongoDB disponible está recortada: no muestra completa c) ni la salida de d). Los resultados aportados se conservan; queda pendiente completar esas evidencias antes de cerrar la revisión de las consignas 4–5.
+
 Trabajo práctico de Bases de Datos II sobre modelado documental,
 migración de un subconjunto de FoodStore a MongoDB y comparación
 de consultas con PostgreSQL.
@@ -106,7 +110,8 @@ contraste de afirmaciones de IA y conclusión de hasta 200 palabras.
 - [x] Estructura de las tablas de origen revisada.
 - [x] Modelo documental redactado; aprobación grupal pendiente.
 - [x] Migración ejecutada manualmente por Amanda y verificada según capturas.
-- [x] Consultas ejecutadas y comparadas.
+- [x] Consultas y comparación aportadas, con ejecución informada por Mateo.
+- [ ] Completar evidencias MongoDB de c) y d) y cerrar la revisión de 4–5.
 - [ ] Contraste de afirmaciones de IA completado.
 - [ ] Informe final integrado.
 
@@ -122,16 +127,35 @@ procedimiento, las evidencias y los límites de la verificación. Capturas:
 [inserción](evidencias/migracion_insercion.png) y
 [verificación](evidencias/migracion_verificacion_amanda.png).
 El [resultado de las consultas y comparación](docs/comparacion_resultados.md)
-documenta la ejecución posterior de las consignas 4 y 5 por Mateo, con sus
+documenta la ejecución posterior de las consignas 4 y 5 informada por Mateo, con sus
 evidencias correspondientes. El análisis de las consignas 6 y 7, la revisión
 grupal y el informe final permanecen pendientes.
+
+### Trazabilidad de ejecuciones independientes
+
+Según lo informado por los integrantes, Amanda realizó su extracción y migración el 2026-10-28 con
+`extraccion_20261028_170446.json`, el hash histórico registrado para ese archivo
+y sus propias evidencias. Mateo realizó un trabajo independiente el 2026-10-29
+con `extraccion_20261029_102959.json`, su hash histórico y sus evidencias de
+consultas y verificación. Aunque ambas extracciones contienen el mismo
+subconjunto documentado, no deben presentarse como una única ejecución; ambos aportes
+se integran en la entrega grupal. El renombrado de
+`migracion_verificacion_amanda.png` no representa una nueva migración de Amanda.
+
+El repositorio conserva un único archivo compartido
+`mongodb/migracion_pedidos.js`, con revisiones sucesivas en el historial: una
+versión estaba configurada con la extracción de Amanda y una revisión posterior
+cambió `FUENTE` y `SHA` para utilizar la extracción de Mateo. El archivo actual
+conserva el encabezado histórico de Amanda y la configuración operativa de
+Mateo; esta combinación no prueba que Amanda haya repetido su migración el
+2026-10-29.
 
 ## Rutas de ejecución actuales
 
 Los ejemplos parten de la raíz del repositorio y requieren autorización específica antes de conectar motores. No repetir la migración ya realizada. `FOODSTORE_RAIZ` conserva la raíz del repositorio, sin agregar la carpeta del TP. Consultar la [guía MongoDB](mongodb/README.md) para modos, destino y precauciones.
 
 - En una sesión nueva de psql conectada al origen autorizado `foodstore_dev`, cargar la extracción completa con `\i TP1_FoodStore_NoSQL/postgresql/extraccion_pedidos.sql`.
-- Los archivos de consultas ejecutados son `TP1_FoodStore_NoSQL/postgresql/consultas_postgresql.sql` y `TP1_FoodStore_NoSQL/mongodb/consultas_mongodb.js`; sus resultados se documentan en `TP1_FoodStore_NoSQL/docs/comparacion_resultados.md`.
+- Los archivos de consultas cuya ejecución informó Mateo son `TP1_FoodStore_NoSQL/postgresql/consultas_postgresql.sql` y `TP1_FoodStore_NoSQL/mongodb/consultas_mongodb.js`; sus resultados se documentan en `TP1_FoodStore_NoSQL/docs/comparacion_resultados.md`.
 - En una shell compatible, la ruta de carga del script es `load("C:/RUTA/AL/REPO/TP1_FoodStore_NoSQL/mongodb/migracion_pedidos.js")`, con raíz y modo definidos según la guía.
 
 Las ejecuciones anteriores usaron la estructura previa al traslado. El JSON, las capturas y la consigna PDF se conservan sin cambios; las rutas que muestran son históricas.

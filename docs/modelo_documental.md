@@ -2,9 +2,9 @@
 
 Responsable: Amanda. Fecha: 2026-10-28. **Estado actual: implementado y migrado manualmente por Amanda, con verificación documentada; aprobación grupal pendiente.** Referencias: [plan](plan_trabajo.md), [decisiones](decisiones.md) y [reglas](../AGENTS.md).
 
-La referencia académica principal es la [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf): página 1, consignas 1–3; página 2, consultas y entrega; página 3, correspondencia con la versión real de FoodStore. La consigna 1 pide identificar tablas y claves y esquematizar documentos; la 3 pide dos reglas de integridad y justificar el embebido. La migración de la consigna 2 se describe solo como propuesta de procedimiento futuro.
+La referencia académica principal es la [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf): página 1, consignas 1–3; página 2, consultas y entrega; página 3, correspondencia con la versión real de FoodStore. La consigna 1 pide identificar tablas y claves y esquematizar documentos; la 3 pide dos reglas de integridad y justificar el embebido. La migración de la consigna 2 ya fue ejecutada por Amanda y se documenta en el [resultado](resultado_migracion.md); se conserva el procedimiento inicialmente propuesto como antecedente.
 
-Este documento conserva el diseño inicial: las secciones 1–8, sus propuestas, controles previstos y ejemplo se redactaron antes de la implementación. En esa etapa el asistente no ejecutó motores ni migraciones; los cálculos eran referencias derivadas de datos aportados por Amanda. Los estados futuros de esas secciones deben leerse en ese contexto histórico.
+Este documento conserva los antecedentes del diseño inicial y actualiza el destino, la correspondencia y los controles con lo implementado. El ejemplo y la secuencia original de la sección 7 se identifican como antecedentes; no implican aprobación grupal. El asistente no ejecutó motores ni migraciones.
 
 ## Implementación posterior y estado de revisión
 
@@ -14,7 +14,7 @@ La implementación utiliza `_id` igual al ID del pedido, cliente con ID Long y a
 
 La [extracción real](../evidencias/extraccion_20261028_170446.json), con SHA-256 `3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243`, informa claves bigint, cantidades integer y fechas sin submilisegundos. Sus controles y las capturas documentan la ejecución del procedimiento; no se instalaron validadores permanentes. La revisión grupal del diseño y la suficiencia académica de ID más alias siguen pendientes. La implementación no constituye aprobación grupal ni completa las consignas 4–7.
 
-Las secciones siguientes se conservan como **diseño inicial**, sin reescribir sus propuestas como si hubieran estado aprobadas desde el comienzo. El [traspaso al equipo](traspaso_equipo.md) describe el modelo implementado y las tareas siguientes.
+Las elecciones iniciales se implementaron sin que ello constituya aprobación grupal. La sección 7 conserva explícitamente la secuencia propuesta antes de ejecutar; el [traspaso al equipo](traspaso_equipo.md) describe el procedimiento de reproducción y las tareas pendientes.
 
 ## 1. Subconjunto y claves del origen
 
@@ -27,13 +27,13 @@ Origen: PostgreSQL, base `foodstore_dev`.
 | `cliente` | PK `id` | Identificador y alias sintético embebidos |
 | `producto` | PK `id` | Identificador y nombre actual en cada línea |
 
-Estas relaciones describen el modelo aportado. Antes de extraer se deberán comprobar las claves, tipos y referencias en el esquema real; no se verificaron sus definiciones mediante una conexión en esta sesión.
+Estas relaciones describen el modelo aportado. La extracción documenta tipos y existencia de referencias del lote; esta revisión documental no verifica las definiciones de claves mediante una conexión al esquema real.
 
-Propuesta de destino: base `foodstore_unidad7`, colección `pedidos`, colección ordinaria local sin particionamiento. Son nombres pendientes de aprobación; no se creó ningún destino. No se proponen colecciones adicionales.
+Destino implementado: base `foodstore_unidad7`, colección `pedidos`, prevista como colección ordinaria local sin particionamiento. Las capturas documentan la carga en ese destino; no se migraron colecciones adicionales. La aprobación grupal del diseño sigue pendiente.
 
 ## 2. Correspondencia PostgreSQL → MongoDB
 
-| Origen | Campo documental | BSON propuesto | Transformación o criterio |
+| Origen | Campo documental | BSON implementado | Transformación o criterio |
 |---|---|---|---|
 | `pedido.id` | `_id` | Long (`long`, entero de 64 bits) | Mismo ID de origen, sin generar ObjectId |
 | `pedido.id_cliente` / `cliente.id` | `cliente.id` | Long | Verificar igualdad y existencia del cliente |
@@ -41,7 +41,7 @@ Propuesta de destino: base `foodstore_unidad7`, colección `pedidos`, colección
 | `pedido.fecha_hora` (`timestamptz`) | `fecha_hora` | Date | Convertir a UTC sin cambiar el instante, sujeto al control de precisión indicado abajo |
 | `pedido.forma_pago` | `forma_pago` | String | Conservar el valor aportado |
 | `pedido.estado` | `estado` | String | Conservar el valor; los cinco están `ENTREGADO` |
-| `pedido.observaciones` | Campo opcional `observaciones` | String o Null si ese es el valor real | Desconocido; omitir en el ejemplo. Revisar privacidad antes de incluirlo; no sustituir desconocido por null o texto inventado |
+| `pedido.observaciones` | Excluido | No aplica | Se excluyeron todas las observaciones del modelo implementado por privacidad; no se sustituyen por null ni texto inventado |
 | Detalles agrupados por `id_pedido` | `lineas` | Array de objetos | Mantener una línea por par de la clave compuesta |
 | `detalle_pedido.id_pedido` | Pertenencia al documento con ese `_id` | Sin campo duplicado | La agrupación conserva la relación con el pedido |
 | `detalle_pedido.id_producto` / `producto.id` | `lineas[].id_producto` | Long | Conservar ID y comprobar existencia del producto |
@@ -51,20 +51,20 @@ Propuesta de destino: base `foodstore_unidad7`, colección `pedidos`, colección
 | `detalle_pedido.subtotal` generado | `lineas[].subtotal` | Decimal128 | Recalcular exactamente y comparar con el subtotal del origen |
 | Suma de subtotales por pedido | `total` | Decimal128 | Campo derivado, no columna de `pedido` informada |
 
-No se trasladan nombres, email, teléfono, dirección ni `created_at` del cliente. Tampoco categoría, descripción, `precio_lista`, stock, activo ni `created_at` del producto: no son necesarios para el subconjunto pedido y no reemplazan sus precios históricos. La exclusión de observaciones sensibles deberá quedar documentada, sin publicar el texto original.
+No se trasladan nombres, email, teléfono, dirección ni `created_at` del cliente. Tampoco categoría, descripción, `precio_lista`, stock, activo ni `created_at` del producto: no son necesarios para el subconjunto pedido y no reemplazan sus precios históricos. Todas las observaciones quedaron excluidas, sin publicar su texto original.
 
 ### Tipos y precisión
 
-- **IDs:** proponer Long para identificadores PostgreSQL bigint; confirmar ese tipo en todas las claves antes de implementar. En mongosh, `Long("1")` evita pasar por un número JavaScript potencialmente impreciso para IDs grandes. No convertir primero a Double. Si un tipo o rango real difiere, revisar el diseño antes de cargar. [S1]
+- **IDs:** se implementó Long para los identificadores bigint informados por la extracción; el script comprueba los rangos del lote. En mongosh, `Long("1")` evita pasar por un número JavaScript potencialmente impreciso para IDs grandes. No convertir primero a Double. Una nueva fuente con tipos o rangos distintos exige revisión antes de cargar. [S1]
 - **Cantidades:** usar `Int32(2)` explícito, comprobando que el origen contiene enteros dentro del rango elegido; detener la transformación ante desbordamiento en lugar de redondear. [S1]
 - **Importes:** `Decimal128("1000.00")` expresa un decimal BSON; construirlo desde texto, sin conversión intermedia a Double. Decimal128 admite 34 cifras significativas, suficientes para estos precios `numeric(10,2)` y los totales aportados. No impone por sí mismo una escala de dos decimales ni las reglas del negocio. [S1, S2]
-- **Fecha:** `ISODate("2026-03-01T23:30:00.000Z")` representa el mismo instante que `2026-03-01T20:30:00-03:00`; `Z` indica UTC. BSON Date registra milisegundos desde la época Unix y no almacena el desplazamiento original. Las fechas aportadas están a segundos enteros. Antes de migrar se debe comprobar que no haya fracciones submilisegundo: si existen, detenerse y acordar una representación complementaria, sin truncarlas silenciosamente. No confundir Date con el tipo interno Timestamp. [S2]
+- **Fecha:** `ISODate("2026-03-01T23:30:00.000Z")` representa el mismo instante que `2026-03-01T20:30:00-03:00`; `Z` indica UTC. BSON Date registra milisegundos desde la época Unix y no almacena el desplazamiento original. La extracción y el script comprobaron que las fechas del lote no tienen fracciones submilisegundo. Una nueva fuente con esas fracciones debe bloquearse y revisarse, sin truncarlas silenciosamente. No confundir Date con el tipo interno Timestamp. [S2]
 
 La sintaxis se contrastó documentalmente con MongoDB; no se evaluó el ejemplo en mongosh. Las versiones de servidor y herramienta disponibles siguen pendientes de registrar.
 
 ## 3. Cliente embebido y privacidad
 
-Se propone `cliente` con `id` y `alias` determinista: para el cliente 1, `Cliente 1`. El alias es una **transformación sintética para la entrega**, no un nombre extraído de PostgreSQL. El mismo ID produce el mismo alias en todos sus pedidos.
+Se implementó `cliente` con `id` y `alias` determinista: para el cliente 1, `Cliente 1`. El alias es una **transformación sintética para la entrega**, no un nombre extraído de PostgreSQL. El mismo ID produce el mismo alias en todos sus pedidos.
 
 Esto permite reconocer al cliente asociado y vincular sus pedidos sin publicar nombres o contactos reales. Es una representación mínima razonable para consultar pedidos, pero la consigna no define qué considera datos esenciales: **queda pendiente confirmar con el equipo/docente si ID más alias satisface ese requisito**. Si se pide más información, acordar su tratamiento antes de implementarla, sin inventar atributos reales ni incorporar contactos personales.
 
@@ -72,7 +72,7 @@ Conservar IDs es necesario para la trazabilidad exigida, pero el alias no garant
 
 ## 4. Único documento ilustrativo: pedido 1
 
-**Ejemplo no ejecutado**, escrito en notación de mongosh para mostrar tipos BSON; no es JSON estricto ni un script de inserción. Está sujeto a aprobación del diseño. No incluye observaciones porque su valor no fue aportado.
+**Ejemplo ilustrativo del diseño inicial, no ejecutado como bloque**, escrito en notación de mongosh para mostrar tipos BSON; no es JSON estricto ni un script de inserción. El modelo implementado conserva esta estructura; su aprobación grupal sigue pendiente. Las observaciones están excluidas del modelo implementado.
 
 ```javascript
 {
@@ -109,9 +109,11 @@ Los nombres de productos se conocen como valores actuales aportados por Amanda. 
 ## 5. Dos reglas principales de integridad — consigna 3
 
 1. **Dominio numérico:** cada cantidad debe ser un entero positivo; precio unitario, subtotal y total deben ser decimales finitos no negativos. Rechazar nulos, valores ausentes, NaN, infinitos y tipos incompatibles. Un precio cero es válido según la restricción informada del origen.
-2. **Coherencia de importes:** en cada línea, `subtotal = cantidad × precio_unitario histórico`; en el pedido, `total = suma de los subtotales`. El cálculo debe ser decimal exacto, sin operadores JavaScript que conviertan los importes a Double. Decimal128 almacena el resultado, pero no calcula estas igualdades automáticamente. Para este lote puede calcularse con aritmética NUMERIC en la extracción PostgreSQL de solo lectura, manteniendo los valores como texto decimal al convertirlos a BSON. El mecanismo exacto quedará especificado al implementar.
+2. **Coherencia de importes:** en cada línea, `subtotal = cantidad × precio_unitario histórico`; en el pedido, `total = suma de los subtotales`. El cálculo debe ser decimal exacto, sin operadores JavaScript que conviertan los importes a Double. Decimal128 almacena el resultado, pero no calcula estas igualdades automáticamente. Se utilizó NUMERIC en la extracción y BigInt en centavos en el script de migración, conservando los importes como texto al construir Decimal128.
 
-### Controles previstos y alcance de las garantías
+### Controles del diseño inicial y alcance de las garantías
+
+La tabla conserva los criterios previstos antes de ejecutar. Su implementación usa los controles de extracción y migración y la comparación posterior completa con el lote validado, según el [resultado documentado](resultado_migracion.md); no constituye una nueva ejecución de esos controles.
 
 | Control | Antes de insertar: responsabilidad del futuro script/procedimiento | Verificación posterior prevista | Garantía del motor y límite |
 |---|---|---|---|
@@ -123,7 +125,7 @@ Los nombres de productos se conocen como valores actuales aportados por Amanda. 
 
 Para evitar un `total` desactualizado se propone cargar el lote como una instantánea sin ediciones manuales de importes. Cualquier modificación futura autorizada de líneas deberá recalcular subtotales y total y escribirlos conjuntamente en una operación sobre el mismo documento, con control de concurrencia cuando corresponda. MongoDB ofrece atomicidad por documento, pero no recalcula campos ni impone las fórmulas por sí solo. Sin validación adicional, una escritura que omita el procedimiento puede romperlas. [S6]
 
-No se diseña ni instala un validador ejecutable en esta etapa. Las reglas anteriores son controles propuestos, todavía no implementados ni verificados en MongoDB.
+No se instaló un validador permanente en MongoDB. Los controles del procedimiento sí se implementaron y el lote tiene verificación documentada; esto no garantiza las reglas ante futuras escrituras ajenas al procedimiento.
 
 ## 6. Justificación del embebido
 
@@ -131,9 +133,9 @@ Las líneas pertenecen al pedido y se consultan junto con él; el cliente mínim
 
 El costo es duplicar el ID y alias del cliente en varios pedidos y el nombre actual del producto en varias líneas. Cambiar una descripción no actualiza automáticamente sus copias. Se propone tratarlas como información descriptiva de la extracción, sin prometer sincronización ni historial de nombres. Los precios permanecen como valores históricos propios de cada detalle. El modelo facilita leer el agregado y mantener sus importes conjuntamente, pero no sustituye las relaciones y restricciones del origen. No se requieren colecciones separadas para este lote pequeño. [S3, S6]
 
-## 7. Método de migración propuesto, sin implementación
+## 7. Antecedente: método de migración propuesto antes de ejecutar
 
-Para cinco pedidos se propone **extracción de solo lectura y un archivo mongosh revisable con inserción ordenada mediante `insertMany`**. Es una propuesta pendiente de aprobación; no se genera aquí ese archivo ni código de conexión. La secuencia futura sería:
+El diseño inicial propuso **extracción de solo lectura y un archivo mongosh revisable con inserción ordenada mediante `insertMany`**. Amanda ejecutó posteriormente ese procedimiento en Compass, según el [resultado documentado](resultado_migracion.md). La lista siguiente conserva la secuencia propuesta como antecedente, no como tareas de migración aún pendientes ni como aprobación grupal acreditada:
 
 1. Aprobar nombres, tipos, cliente y método; identificar versiones, conexión y destino sin secretos y obtener autorización de ejecución para ambos motores. No modificar PostgreSQL.
 2. Obtener una extracción consistente de pedidos 1–5 y sus siete detalles, junto con las referencias existentes; registrar fecha y contexto. Comprobar que corresponda con los datos aportados antes de continuar.
@@ -153,7 +155,7 @@ Para cinco pedidos se propone **extracción de solo lectura y un archivo mongosh
 | 4 | 3 | 2, 3 | 2 | 6200.00 |
 | 5 | 2 | 1 | 1 | 1050.00 |
 
-Son expectativas aritméticas para futura comprobación, no consultas ejecutadas ni evidencia de migración. El total conjunto calculado es 14700.00; comprobar también cada línea, fecha, cantidad y precio, evitando que un total agregado oculte diferencias.
+Estas referencias se calcularon antes de ejecutar y luego coincidieron con la extracción guardada. El total conjunto es 14700.00; la verificación documentada compara también cada campo y línea, sin limitarse al agregado. La tabla no acredita las consultas académicas de las consignas 4–5.
 
 ## 8. Fuentes oficiales consultadas y dudas
 
@@ -168,4 +170,4 @@ Consulta documental: 2026-10-28. La documentación en línea no acredita la vers
 - **S7.** [MongoDB — insertMany](https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/): inserción ordenada y detención ante errores.
 - **S8.** [MongoDB — Model Monetary Data](https://www.mongodb.com/docs/manual/tutorial/model-monetary-data/): uso de decimal para importes frente a aproximaciones binarias.
 
-Pendiente de revisión: aprobar todas las propuestas; confirmar suficiencia académica de ID más alias; confirmar tipos reales de claves y cantidad y ausencia de fracciones submilisegundo; registrar versiones; definir tratamiento de observaciones sin inventarlas ni publicar datos sensibles. No se eligió moneda porque no fue informada. Las verificaciones de referencias, fórmulas y conservación se ejecutarán únicamente en una etapa autorizada.
+Pendiente de revisión: aprobación grupal del diseño implementado, suficiencia académica de ID más alias y registro de versiones de MongoDB y Compass. Los tipos y las fechas del lote ya fueron comprobados según la extracción y la verificación documentada; todas las observaciones se excluyeron. No se eligió moneda porque no fue informada. Cualquier nueva ejecución requiere autorización y no debe repetir la inserción existente.

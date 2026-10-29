@@ -27,6 +27,12 @@ SHA-256 de sus bytes originales, coincidente con ambas capturas y comprobado loc
 
 Ambas imágenes muestran la misma referencia al archivo fuente y el SHA-256 indicado. Se conservaron sin cambios; esta documentación las enlaza sin recortarlas ni reemplazarlas.
 
+### Evidencia complementaria: documento del pedido 1
+
+La [captura del documento](../evidencias/pedido_1_documento.png), inspeccionada visualmente, muestra la selección de `foodstore_unidad7` y `db.pedidos.findOne({ _id: Long("1") })`. La salida contiene `_id: Long('1')`, fecha `2026-03-01T23:30:00.000Z`, forma de pago `EFECTIVO`, estado `ENTREGADO`, cliente con ID Long 1 y alias `Cliente 1`, y dos líneas: producto Long 1, Muzzarella, cantidad 2, precio Decimal128 1000.00 y subtotal 2000.00; producto Long 3, Coca 1.5L, cantidad 1, precio Decimal128 800.00 y subtotal 800.00. El total visible es Decimal128 2800.00.
+
+Esta captura ilustra un documento y su estructura; no muestra el hash ni verifica el lote completo, el tipo BSON de las cantidades o el estado actual de las bases. No sustituye las dos capturas de inserción y verificación ni acredita las consultas pendientes de las consignas 4–5. El asistente inspeccionó la imagen sin ejecutar la consulta ni modificarla.
+
 ## Qué comprueba el procedimiento
 
 Según la lectura del script, la salida satisfactoria se emite después de comprobar:
@@ -40,7 +46,7 @@ Esta explicación proviene de la revisión del código y de la salida mostrada; 
 
 ## Límites de la verificación
 
-- Las capturas muestran resúmenes de salida, no el contenido completo de cada documento ni una transcripción íntegra de la sesión. El detalle del mecanismo se obtiene del script del repositorio.
+- Las dos capturas de inserción y verificación muestran resúmenes de salida. La captura complementaria muestra el documento del pedido 1; no hay una transcripción íntegra de la sesión ni capturas de todos los documentos. El detalle del mecanismo se obtiene del script del repositorio.
 - La comprobación cubre los IDs 1–5 del lote; no demuestra que la colección contenga únicamente esos documentos ni verifica otros pedidos.
 - La comparación se realiza contra la extracción guardada. No es una comparación nueva contra el estado actual de PostgreSQL ni prueba sincronización futura entre motores.
 - No se instalaron validadores permanentes. La verificación de una carga no garantiza que futuras escrituras mantengan las reglas de integridad.

@@ -25,15 +25,15 @@ Referencia académica principal: [consigna oficial de Unidad 7](../consignas/BDI
 
 El equipo completo revisa la conclusión y el informe final. Cada integrante trabaja en su rama y presenta un pull request.
 
-## Secuencia prevista
+## Secuencia y estado de avance
 
-1. Preparar estructura, reglas y plantillas (etapa inicial completada).
-2. Revisar el diseño redactado para consignas 1 y 3: correspondencia de campos, tipos BSON, ejemplo e integridad. Aprobar o ajustar destino MongoDB, cliente y método en [decisiones.md](decisiones.md).
-3. Solo tras la revisión y un nuevo pedido de implementación, preparar la migración con detección de IDs existentes, sin reemplazos silenciosos. La aprobación documental no autoriza ejecutar.
-4. Con autorización específica para motor y destino, ejecutar la migración y verificar conservación de datos y cantidades.
-5. Preparar y ejecutar, con autorización, las cuatro consultas MongoDB: a) identificador y estado; b) estado existente; c) producto contenido; d) total superior a un umbral justificado. Comparar b) y c) en ambos motores por cantidad e IDs de pedidos.
-6. Consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles.
-7. Integrar evidencias anonimizadas e informe, revisar grupalmente y preparar entrega.
+1. **Realizado:** preparación de estructura, reglas y plantillas.
+2. **Redactado e implementado:** diseño de consignas 1 y 3, con correspondencia, tipos BSON, ejemplo e integridad. **Pendiente:** revisión y aprobación grupal de destino, cliente y método según [decisiones.md](decisiones.md), y confirmación de suficiencia académica de ID más alias.
+3. **Realizado:** extracción y código de migración con detección de IDs existentes, sin reemplazos silenciosos. La aprobación documental no autoriza nuevas ejecuciones.
+4. **Realizado por Amanda:** ejecución manual de la extracción y migración, con conservación de datos y cantidades verificada según las evidencias del [resultado](resultado_migracion.md). No repetir la inserción.
+5. **Pendiente (Mateo, consignas 4–5):** preparar y ejecutar, con autorización, las cuatro consultas MongoDB: a) identificador y estado; b) estado existente; c) producto contenido; d) total superior a un umbral justificado. Comparar b) y c) en ambos motores por cantidad e IDs de pedidos.
+6. **Pendiente (Lucas, consignas 6–7):** consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles; redactar conclusión para revisión grupal.
+7. **Pendiente (equipo):** integrar el aporte de Amanda ya redactado, las evidencias y los trabajos restantes en el PDF, revisar grupalmente y preparar entrega.
 
 ## Estado real
 

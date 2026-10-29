@@ -1,7 +1,7 @@
 -- FoodStore, Unidad 7. Extracción ejecutada manualmente por Amanda y documentada.
 -- Registro: docs/resultado_migracion.md. El asistente no ejecutó los motores.
--- Origen previsto: foodstore_dev, esquema public, pedidos 1 a 5.
--- Destino previsto: foodstore_unidad7.pedidos; este SQL no lo crea ni carga.
+-- Origen de la extracción documentada: foodstore_dev, esquema public, pedidos 1 a 5.
+-- Destino de la migración documentada: foodstore_unidad7.pedidos; este SQL no crea ni carga MongoDB.
 -- Referencias PREVIAS de Amanda: cinco pedidos, siete detalles, ENTREGADO.
 -- Los VALUES son referencias para contrastar, nunca resultados observados.
 -- No se extraen datos personales del cliente ni observaciones (excluidas).

@@ -54,7 +54,7 @@ Consultar el [resultado de la migración](docs/resultado_migracion.md) para las 
 - No ejecutar `git add`, `commit`, `push`, `merge`, `rebase`, `reset`, `clean`, `pull` ni otras operaciones que escriban en Git, ni modificar configuraciones Git, sin autorización expresa. Amanda realiza los commits y pushes salvo nuevo pedido explícito.
 - No realizar force push ni configurar protecciones remotas en esta preparación.
 - No agregar firmas, colaboradores ni líneas `Co-authored-by`.
-- Usar ramas de trabajo y revisión mediante pull request. No modificar la parte de otro integrante fuera del alcance autorizado; proponer los cambios necesarios para revisión.
+- Amanda realizó la preparación inicial mientras trabajaba sola y autorizó publicaciones directas en `main` durante esa etapa. Al incorporarse el equipo, el flujo previsto es usar ramas de trabajo y revisión mediante pull request. Ese antecedente no autoriza publicaciones directas para cualquier cambio documental futuro ni acredita protección de `main`. No modificar la parte de otro integrante fuera del alcance autorizado; proponer los cambios necesarios para revisión.
 - Responsabilidades acordadas: Amanda, consignas 1–3; Mateo, 4–5; Lucas, 6–7. El equipo completo revisa la conclusión y el informe final.
 - Registrar la asistencia de IA de manera académica y verificable en la documentación correspondiente.
 

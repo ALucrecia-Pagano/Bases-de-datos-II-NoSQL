@@ -14,6 +14,8 @@ El equipo completo revisa la conclusión y el informe final. Registrar el alcanc
 
 ## Flujo acordado
 
+Amanda realizó la preparación inicial mientras trabajaba sola y autorizó publicaciones directas en `main` durante esa etapa. Al incorporarse el equipo, el flujo previsto es trabajar en ramas y revisar mediante pull request, según los pasos siguientes. Ese antecedente no autoriza publicaciones directas para cualquier cambio documental futuro ni acredita protección de `main`.
+
 1. Comprobar la rama y el estado del repositorio antes de actualizarlo.
 2. Actualizar con `git pull --ff-only` cuando corresponda; detenerse ante conflictos o divergencias. Para asistentes, las operaciones de escritura requieren la autorización indicada en AGENTS.md.
 3. Trabajar en ramas descriptivas, por ejemplo `amanda/modelo-migracion`, `mateo/consultas-comparacion` y `lucas/analisis-ia`.

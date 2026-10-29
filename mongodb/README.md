@@ -42,10 +42,10 @@ Configurar la conexión revisada con `retryWrites=false` antes de insertar: adem
 Cuando el script esté revisado y la ejecución autorizada:
 
 1. Confirmar en Compass la conexión MongoDB prevista, su versión y `retryWrites=false` (agregar `?retryWrites=false` a una URI sin opciones, o `&retryWrites=false` si ya tiene opciones; no publicar la URI con secretos). Abrir la shell integrada `>_`.
-2. Definir la raíz absoluta del repositorio, usando `/` en Windows:
+2. Definir la raíz absoluta del repositorio, usando `/` en Windows. Cada integrante debe sustituir `C:/RUTA/AL/REPO` por la ruta absoluta real de su repositorio, tanto aquí como en el ejemplo de `load()`:
 
    ```javascript
-   globalThis.FOODSTORE_RAIZ = "C:/Users/hp/OneDrive/Escritorio/Bases-de-datos-II-NoSQL";
+   globalThis.FOODSTORE_RAIZ = "C:/RUTA/AL/REPO";
    globalThis.FOODSTORE_MODO = "validar";
    ```
 
@@ -75,7 +75,7 @@ mongosh "mongodb://localhost:27017/foodstore_unidad7?retryWrites=false"
 Si el entorno requiere autenticación, usar la conexión y mecanismo del equipo; no incluir contraseñas en archivos o comandos publicables. En la shell externa definir `FOODSTORE_RAIZ` y el modo como arriba. Ejecutar el archivo mediante una ruta absoluta:
 
 ```javascript
-load("C:/Users/hp/OneDrive/Escritorio/Bases-de-datos-II-NoSQL/mongodb/migracion_pedidos.js")
+load("C:/RUTA/AL/REPO/mongodb/migracion_pedidos.js")
 ```
 
 Primero `validar`; después, solo con autorización, seleccionar el destino y establecer `insertar` antes de otro `load()`. `verificar` permite una ejecución posterior de solo lectura.

@@ -25,7 +25,7 @@ Origen: PostgreSQL, base `foodstore_dev`.
 | `pedido` | PK `id`; `id_cliente` vincula con `cliente.id` | Un documento por pedido |
 | `detalle_pedido` | PK compuesta (`id_pedido`, `id_producto`); vínculos con `pedido.id` y `producto.id` | Un elemento de `lineas` por detalle |
 | `cliente` | PK `id` | Identificador y alias sintético embebidos |
-| `producto` | PK `id` | Identificador y nombre actual en cada línea |
+| `producto` | PK `id`; FK `id_categoria` → `categoria.id` | Identificador y nombre actual en cada línea; `categoria` queda fuera del subconjunto migrado |
 
 Estas relaciones describen el modelo aportado. La extracción documenta tipos y existencia de referencias del lote; esta revisión documental no verifica las definiciones de claves mediante una conexión al esquema real.
 

@@ -84,8 +84,11 @@ no del precio de lista actual del producto.
 - No se publicarán contraseñas, respaldos completos ni datos personales reales.
 - Las propuestas de IA se verificarán con documentación oficial
   o resultados de ejecución.
-- Cada integrante trabajará en su rama y propondrá sus cambios
-  mediante pull request para revisión antes de integrarlos a main.
+- Amanda realizó la preparación inicial mientras trabajaba sola y autorizó
+  publicaciones directas en `main` durante esa etapa. Al incorporarse el equipo,
+  el flujo previsto es trabajar en ramas y revisar mediante pull request antes
+  de integrar a `main`. Ese antecedente no autoriza publicaciones directas para
+  cualquier cambio documental futuro ni acredita protección de `main`.
 
 ## Entrega prevista
 

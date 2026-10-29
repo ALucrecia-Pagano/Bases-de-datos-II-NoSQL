@@ -10,11 +10,13 @@ Este documento conserva los antecedentes del diseño inicial y actualiza el dest
 
 Amanda ejecutó manualmente la extracción y la migración a `foodstore_unidad7.pedidos`. Las [capturas de inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion_amanda.png), inspeccionadas documentalmente, muestran IDs Long 1–5, cinco pedidos, siete líneas, tipos BSON correctos y correspondencia de todos los campos con el lote fuente. Ver [resultado de la migración](resultado_migracion.md) para procedimiento y límites; no son nuevas ejecuciones del asistente.
 
-La implementación utiliza `_id` igual al ID del pedido, cliente con ID Long y alias sintético, líneas embebidas, cantidades Int32, fechas Date e importes Decimal128. **Se excluyeron todas las observaciones**, además de nombres/contactos personales del cliente; esto concreta y acota la opción inicialmente contemplada en la tabla de correspondencia. Los nombres de productos son actuales y los precios históricos provienen del detalle. El [script ejecutado](../mongodb/migracion_pedidos.js) calcula con BigInt en centavos, controla fechas sin pérdida submilisegundo e incorpora `Buffer` mediante `require("buffer")` para Compass.
+La implementación utiliza `_id` igual al ID del pedido, cliente con ID Long y alias sintético, líneas embebidas, cantidades Int32, fechas Date e importes Decimal128. **Se excluyeron todas las observaciones**, además de nombres/contactos personales del cliente; esto concreta y acota la opción inicialmente contemplada en la tabla de correspondencia. Los nombres de productos son actuales y los precios históricos provienen del detalle. El [script histórico con fuente y SHA de Amanda](https://github.com/ALucrecia-Pagano/Bases-de-datos-II-NoSQL/blob/73ee80a6c5b35b75491d81ebf30c03371a88ec68/mongodb/migracion_pedidos.js) calcula con BigInt en centavos, controla fechas sin pérdida submilisegundo e incorpora `Buffer` mediante `require("buffer")` para Compass.
 
 La [extracción real](../evidencias/extraccion_20261028_170446.json), con SHA-256 `3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243`, informa claves bigint, cantidades integer y fechas sin submilisegundos. Sus controles y las capturas documentan la ejecución del procedimiento; no se instalaron validadores permanentes. La revisión grupal del diseño y la suficiencia académica de ID más alias siguen pendientes. La implementación no constituye aprobación grupal ni completa las consignas 6–7; las consignas 4–5 se documentan en [comparacion_resultados.md](comparacion_resultados.md).
 
 Las elecciones iniciales se implementaron sin que ello constituya aprobación grupal. La sección 7 conserva explícitamente la secuencia propuesta antes de ejecutar; el [traspaso al equipo](traspaso_equipo.md) describe el procedimiento de reproducción y las tareas pendientes.
+
+La referencia histórica fija el procedimiento con la fuente y el hash de Amanda; el [script compartido actual](../mongodb/migracion_pedidos.js) cambió posteriormente `FUENTE` y `SHA` para la extracción del 29/10 de Mateo. Esa configuración posterior no corresponde a la ejecución original de Amanda. Las rutas de las capturas son anteriores al traslado a `TP1_FoodStore_NoSQL/`.
 
 ## 1. Subconjunto y claves del origen
 
@@ -22,8 +24,8 @@ Origen: PostgreSQL, base `foodstore_dev`.
 
 | Tabla | Clave y relación que intervienen | Papel en el documento |
 |---|---|---|
-| `pedido` | PK `id`; `id_cliente` vincula con `cliente.id` | Un documento por pedido |
-| `detalle_pedido` | PK compuesta (`id_pedido`, `id_producto`); vínculos con `pedido.id` y `producto.id` | Un elemento de `lineas` por detalle |
+| `pedido` | PK `id`; FK `id_cliente` → `cliente.id` | Un documento por pedido |
+| `detalle_pedido` | PK compuesta (`id_pedido`, `id_producto`); FK `id_pedido` → `pedido.id`; FK `id_producto` → `producto.id` | Un elemento de `lineas` por detalle |
 | `cliente` | PK `id` | Identificador y alias sintético embebidos |
 | `producto` | PK `id`; FK `id_categoria` → `categoria.id` | Identificador y nombre actual en cada línea; `categoria` queda fuera del subconjunto migrado |
 

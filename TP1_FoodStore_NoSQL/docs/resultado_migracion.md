@@ -4,11 +4,13 @@ Fecha del registro documental: 2026-10-28. Ejecución manual: Amanda Pagano, en 
 
 ## Procedimiento y trazabilidad
 
-1. Amanda ejecutó manualmente la [extracción de solo lectura](../postgresql/extraccion_pedidos.sql) desde `foodstore_dev.public`. Su [archivo JSON](../evidencias/extraccion_20261028_170446.json) fue validado previamente: cinco pedidos, siete líneas y controles satisfactorios. La revisión de ese archivo se detalla en el [plan de trabajo](plan_trabajo.md).
-2. Se preparó [migracion_pedidos.js](../mongodb/migracion_pedidos.js) para leer ese archivo y comprobar su SHA-256 antes de construir el lote. No se transcribieron manualmente los datos de carga. IDs e importes se convierten desde texto; los cálculos se controlan con BigInt en centavos y las fechas se comprueban antes de convertirlas a Date.
+1. Según lo informado por Amanda, ejecutó manualmente la [extracción de solo lectura](../postgresql/extraccion_pedidos.sql) desde `foodstore_dev.public`. Su [archivo JSON](../evidencias/extraccion_20261028_170446.json) fue validado previamente: cinco pedidos, siete líneas y controles satisfactorios. La revisión de ese archivo se detalla en el [plan de trabajo](plan_trabajo.md).
+2. Se preparó [migracion_pedidos.js, versión histórica de Amanda](https://github.com/ALucrecia-Pagano/Bases-de-datos-II-NoSQL/blob/73ee80a6c5b35b75491d81ebf30c03371a88ec68/mongodb/migracion_pedidos.js) para leer ese archivo y comprobar su SHA-256 antes de construir el lote. No se transcribieron manualmente los datos de carga. IDs e importes se convierten desde texto; los cálculos se controlan con BigInt en centavos y las fechas se comprueban antes de convertirlas a Date.
 3. Durante la validación manual en Compass, Amanda informó `ReferenceError: Buffer is not defined`. Se incorporó `const { Buffer } = require("buffer");` junto a los demás módulos dentro del `try`, conservando el hash y los controles. La incidencia y el ajuste se registran en [mongodb/README.md](../mongodb/README.md).
-4. Amanda ejecutó el modo `insertar` en `foodstore_unidad7.pedidos`. La primera captura muestra la validación local satisfactoria y la inserción confirmada de los cinco IDs. El script comprueba los IDs existentes antes de insertar con `insertMany` ordenado.
+4. Amanda informó que ejecutó el modo `insertar` en `foodstore_unidad7.pedidos`. La primera captura muestra la validación local satisfactoria y la inserción confirmada de los cinco IDs. El script comprueba los IDs existentes antes de insertar con `insertMany` ordenado.
 5. La segunda captura muestra la salida de verificación satisfactoria. El script incluye una verificación posterior a la inserción y un modo independiente `verificar`; las capturas no permiten determinar si esa salida procede de una ejecución independiente o de la verificación integrada. En ambos casos, la salida documentada corresponde a la comprobación del lote fuente.
+
+Referencia permanente del procedimiento: commit `73ee80a6c5b35b75491d81ebf30c03371a88ec68`, ruta histórica `mongodb/migracion_pedidos.js`, comprobado mediante `git show`. Contiene `FUENTE` y `SHA` de Amanda y la importación de `Buffer`. El traslado posterior ajustó rutas; el [script compartido actual](../mongodb/migracion_pedidos.js) cambió además `FUENTE` y `SHA` para la extracción del 29/10 de Mateo. No se atribuye esa configuración posterior a la ejecución original. La existencia de esta versión en Git no demuestra por sí sola qué bytes se pegaron en Compass; la ejecución se atribuye a lo informado por Amanda y a las salidas visibles.
 
 Fuente del lote en la ejecución histórica: `evidencias/extraccion_20261028_170446.json`. Ubicación actual desde la raíz del repositorio: `TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json`.
 
@@ -37,7 +39,7 @@ Esta captura ilustra un documento y su estructura; no muestra el hash ni verific
 
 ## Qué comprueba el procedimiento
 
-Según la lectura del script, la salida satisfactoria se emite después de comprobar:
+Según la lectura de la versión histórica enlazada, la salida satisfactoria se emite después de comprobar:
 
 - Cinco documentos recuperados por los IDs del lote y siete líneas en total.
 - Tipos BSON mediante `$type` en una agregación del servidor: `long` para IDs del pedido, cliente y productos; `int` para cantidades; `date` para fecha; `decimal` para precios, subtotales y total.
@@ -46,9 +48,11 @@ Según la lectura del script, la salida satisfactoria se emite después de compr
 
 Esta explicación proviene de la revisión del código y de la salida mostrada; no equivale a una nueva ejecución de los controles por el asistente. El cliente conserva solo ID y alias sintético; se excluyen observaciones y datos personales del cliente. Los nombres de productos son descripciones actuales del origen, mientras que los precios proceden del detalle histórico.
 
+Comprobación local de la extracción original de Amanda, sin motores: cinco pedidos y siete líneas; cantidades enteras positivas, importes finitos no negativos, cada subtotal igual a cantidad por precio histórico y total igual a suma de subtotales, mediante aritmética decimal exacta. Totales de pedidos 1–5: **2800.00, 1500.00, 3150.00, 6200.00 y 1050.00**. Esta comprobación del archivo no es una consulta nueva a las bases.
+
 ## Límites de la verificación
 
-- Las dos capturas de inserción y verificación muestran resúmenes de salida. La captura complementaria muestra el documento del pedido 1; no hay una transcripción íntegra de la sesión ni capturas de todos los documentos. El detalle del mecanismo se obtiene del script del repositorio.
+- Las dos capturas de inserción y verificación muestran resúmenes de salida. La captura complementaria muestra el documento del pedido 1; no hay una transcripción íntegra de la sesión ni capturas de todos los documentos. El detalle del mecanismo se obtiene de la versión histórica enlazada.
 - La comprobación cubre los IDs 1–5 del lote; no demuestra que la colección contenga únicamente esos documentos ni verifica otros pedidos.
 - La comparación se realiza contra la extracción guardada. No es una comparación nueva contra el estado actual de PostgreSQL ni prueba sincronización futura entre motores.
 - No se instalaron validadores permanentes. La verificación de una carga no garantiza que futuras escrituras mantengan las reglas de integridad.
@@ -60,4 +64,4 @@ Esta explicación proviene de la revisión del código y de la salida mostrada; 
 
 La migración del lote está **ejecutada manualmente por Amanda y verificada según las evidencias inspeccionadas**. Este registro no declara aprobación grupal del diseño ni resuelve la consulta pendiente sobre suficiencia académica del cliente con ID y alias.
 
-Las consultas y comparación de las consignas 4 y 5 fueron ejecutadas posteriormente por Mateo y están documentadas en [comparacion_resultados.md](comparacion_resultados.md). Permanecen pendientes el análisis y contraste de IA de las consignas 6 y 7 (Lucas), y la revisión grupal de conclusión e informe. Las verificaciones internas de migración no sustituyen las evidencias específicas de las consultas.
+Las consultas y comparación de las consignas 4 y 5 fueron aportadas posteriormente, con ejecución informada por Mateo y revisión pendiente de completar evidencias, según [comparacion_resultados.md](comparacion_resultados.md). Permanecen pendientes el análisis y contraste de IA de las consignas 6 y 7 (Lucas), y la revisión grupal de conclusión e informe. Las verificaciones internas de migración no sustituyen las evidencias específicas de las consultas.

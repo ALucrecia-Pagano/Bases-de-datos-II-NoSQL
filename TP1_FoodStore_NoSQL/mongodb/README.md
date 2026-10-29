@@ -1,6 +1,6 @@
 # Migración de pedidos — ejecución manual documentada
 
-Aplicar [AGENTS.md](../AGENTS.md). Amanda ejecutó manualmente el script en Compass; el asistente inspeccionó las capturas y documentó el resultado, sin nuevas conexiones ni ejecuciones. El [resultado de la migración](../docs/resultado_migracion.md) enlaza ambas evidencias y delimita la verificación. No cambia la aprobación grupal del diseño ni completa las consultas asignadas a Mateo. Las instrucciones siguientes se conservan como referencia del procedimiento; no autorizan repetir una carga.
+Aplicar [AGENTS.md](../../AGENTS.md). Amanda ejecutó manualmente el script en Compass; el asistente inspeccionó las capturas y documentó el resultado, sin nuevas conexiones ni ejecuciones. El [resultado de la migración](../docs/resultado_migracion.md) enlaza ambas evidencias y delimita la verificación. No cambia la aprobación grupal del diseño ni completa las consultas asignadas a Mateo. Las instrucciones siguientes se conservan como referencia del procedimiento; no autorizan repetir una carga.
 
 ## Incidencia de Buffer y resultado registrado
 
@@ -36,6 +36,10 @@ El script lee `extraccion` del archivo real; no usa las referencias esperadas co
 Configurar la conexión revisada con `retryWrites=false` antes de insertar: además de no tener bucles de reintento, se deben desactivar los reintentos automáticos del cliente. El script no cambia la conexión ni registra su URI o credenciales. Evitar escritores concurrentes durante el laboratorio. La comprobación previa de IDs no elimina una carrera con otro escritor.
 
 `insertMany` con `ordered: true` **no es una transacción del lote**. Ante un error pueden haberse insertado documentos anteriores. El script informa fase, fecha, código y mensaje, y termina sin reintentar, borrar ni completar automáticamente. Conservar la salida de la shell como evidencia nueva, sin sobrescribir el JSON original; revisar los IDs que realmente quedaron antes de decidir cualquier recuperación. Un error de verificación posterior también puede ocurrir después de una inserción confirmada.
+
+## Rutas actuales y trazabilidad
+
+`FOODSTORE_RAIZ` sigue siendo la raíz del repositorio, sin agregar `TP1_FoodStore_NoSQL`. `FUENTE` apunta ahora a `TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json`. Las instrucciones siguientes usan la ubicación actual. Las menciones previas a `evidencias/` y las rutas visibles en las capturas corresponden a la estructura histórica; esas evidencias no se modificaron ni se repitió la migración.
 
 ## Ejecución manual desde la shell de Compass
 
@@ -75,7 +79,7 @@ mongosh "mongodb://localhost:27017/foodstore_unidad7?retryWrites=false"
 Si el entorno requiere autenticación, usar la conexión y mecanismo del equipo; no incluir contraseñas en archivos o comandos publicables. En la shell externa definir `FOODSTORE_RAIZ` y el modo como arriba. Ejecutar el archivo mediante una ruta absoluta:
 
 ```javascript
-load("C:/RUTA/AL/REPO/mongodb/migracion_pedidos.js")
+load("C:/RUTA/AL/REPO/TP1_FoodStore_NoSQL/mongodb/migracion_pedidos.js")
 ```
 
 Primero `validar`; después, solo con autorización, seleccionar el destino y establecer `insertar` antes de otro `load()`. `verificar` permite una ejecución posterior de solo lectura.

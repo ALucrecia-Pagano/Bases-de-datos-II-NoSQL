@@ -9,7 +9,11 @@ FoodStore — Unidad 7: NoSQL. Bases de Datos II, Tecnicatura Universitaria en P
 
 Este proyecto continúa FoodStore. El TP8 anterior corresponde a la Unidad 6; este trabajo corresponde a la Unidad 7 NoSQL y no al TP7 anterior de Administración y Seguridad. No asumir que los archivos del repositorio anterior describen el estado actual de las bases ni modificar ese repositorio.
 
-Leer [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md) y el [plan de trabajo](docs/plan_trabajo.md). Las reglas comunes para asistentes se mantienen en este archivo.
+Leer [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md) y el [plan de trabajo](TP1_FoodStore_NoSQL/docs/plan_trabajo.md). Las reglas comunes para asistentes se mantienen en este archivo.
+
+## Organización del repositorio
+
+Los trabajos se organizan en carpetas. El actual es [TP1 — FoodStore NoSQL, Unidad 7](TP1_FoodStore_NoSQL/README.md). TP1 es la numeración organizativa de este repositorio, no una denominación atribuida a la consigna oficial. Las secciones específicas de FoodStore se aplican a ese trabajo.
 
 ## Alcance y entregables
 
@@ -18,7 +22,7 @@ Leer [README.md](README.md), [CONTRIBUTING.md](CONTRIBUTING.md) y el [plan de tr
 - Consultar MongoDB: a) listar identificador y estado; b) filtrar por un estado existente; c) buscar pedidos que contengan un producto; d) buscar pedidos con total superior a un umbral justificado.
 - Comparar b) y c) en ambos motores, incluyendo cantidades e identificadores de pedidos.
 - Consultar una IA y contrastar dos afirmaciones con documentación oficial o resultados reproducibles del laboratorio.
-- Entregar un PDF de hasta cinco páginas, sin contar código adjunto, con conclusión de hasta 200 palabras; adjuntar `mongodb/consultas_mongodb.js` y `postgresql/consultas_postgresql.sql`, o equivalentes.
+- Entregar un PDF de hasta cinco páginas, sin contar código adjunto, con conclusión de hasta 200 palabras; adjuntar `TP1_FoodStore_NoSQL/mongodb/consultas_mongodb.js` y `TP1_FoodStore_NoSQL/postgresql/consultas_postgresql.sql`, o equivalentes.
 
 ## Antecedente: preparación inicial
 
@@ -28,7 +32,7 @@ La etapa inicial se limitó a preparar estructura, reglas y plantillas, sin reso
 
 Amanda ejecutó manualmente la extracción y la migración a `foodstore_unidad7.pedidos`: cinco pedidos y siete líneas, con verificación documentada. El destino, los tipos BSON (IDs Long, cantidades Int32, fechas Date e importes Decimal128), el cliente con ID y alias sintético y el método de extracción de solo lectura e inserción ordenada ya están implementados y documentados. El asistente revisó archivos y evidencias; no ejecutó los motores.
 
-Consultar el [resultado de la migración](docs/resultado_migracion.md) para las evidencias y sus límites, y el [plan vigente](docs/plan_trabajo.md) para los pendientes. La aprobación grupal del diseño y la confirmación académica de la suficiencia del cliente con ID más alias siguen pendientes. Las consignas 4–7 y el informe final no se consideran completados.
+Consultar el [resultado de la migración](TP1_FoodStore_NoSQL/docs/resultado_migracion.md) para las evidencias y sus límites, y el [plan vigente](TP1_FoodStore_NoSQL/docs/plan_trabajo.md) para los pendientes. La aprobación grupal del diseño y la confirmación académica de la suficiencia del cliente con ID más alias siguen pendientes. Las consignas 4–7 y el informe final no se consideran completados.
 
 ## Forma de trabajo
 

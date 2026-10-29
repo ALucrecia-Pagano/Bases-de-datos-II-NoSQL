@@ -1,6 +1,6 @@
 # Traspaso al equipo — FoodStore, Unidad 7
 
-Registro: 2026-10-28. Aplicar [AGENTS.md](../AGENTS.md), [CLAUDE.md](../CLAUDE.md) y la [guía de colaboración](../CONTRIBUTING.md). Referencia académica principal: [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf). Este documento organiza tareas pendientes; no registra nuevas ejecuciones ni autoriza operaciones en motores.
+Registro: 2026-10-28. Aplicar [AGENTS.md](../../AGENTS.md), [CLAUDE.md](../../CLAUDE.md) y la [guía de colaboración](../../CONTRIBUTING.md). Referencia académica principal: [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf). Este documento organiza tareas pendientes; no registra nuevas ejecuciones ni autoriza operaciones en motores.
 
 ## Estado recibido y modelo implementado
 
@@ -42,7 +42,7 @@ SHA-256 obligatorio de la extracción original:
 
 Solo para una reproducción futura autorizada en otra computadora:
 
-1. Obtener los archivos del repositorio, incluida `.gitattributes`, sin editar ni reformatear el JSON. Verificar sus bytes con `sha256sum evidencias/extraccion_20261028_170446.json` en Git Bash; debe coincidir con el hash anterior. Si difiere, detenerse; no cambiar el hash del script para ocultar la diferencia.
+1. Obtener los archivos del repositorio, incluida `.gitattributes`, sin editar ni reformatear el JSON. Verificar sus bytes con `sha256sum TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json` en Git Bash; debe coincidir con el hash anterior. Si difiere, detenerse; no cambiar el hash del script para ocultar la diferencia.
 2. Comprobar la conexión y versión MongoDB de esa computadora. Usar el destino `foodstore_unidad7.pedidos` y conexión con `retryWrites=false`, como indica la guía; no apuntar accidentalmente al entorno de Amanda. Compass fue el entorno usado por Amanda; mongosh externo no se supone instalado.
 3. Establecer `globalThis.FOODSTORE_RAIZ` con la ruta absoluta del repositorio **en esa computadora**, usando `/` en Windows, y `globalThis.FOODSTORE_MODO = "validar"`. Ejecutar manualmente el script completo según la [guía](../mongodb/README.md). Este modo solo valida el archivo local y el lote BSON; no consulta el destino.
 4. Solo si la validación y la autorización son satisfactorias, seleccionar `foodstore_unidad7`, establecer `FOODSTORE_MODO = "insertar"` y ejecutar el script. Antes de escribir, el script busca **todos** los IDs del lote en el destino. Deben estar ausentes: si existe cualquiera, se detiene sin insertar. No borrar, reemplazar, actualizar ni recrear la colección para forzar la carga.
@@ -89,10 +89,10 @@ El PDF grupal sigue pendiente: hasta cinco páginas sin contar código adjunto, 
 
 ## Conservación del hash al compartir
 
-Se detectó `core.autocrlf=true` y 418 finales CRLF en la extracción original. Antes de protegerla, `git hash-object` con filtros y sin filtros produjo objetos diferentes; estos IDs de objetos Git no son el SHA-256 de la evidencia. Se incorporó en [.gitattributes](../.gitattributes) una regla para el archivo exacto:
+Se detectó `core.autocrlf=true` y 418 finales CRLF en la extracción original. Antes de protegerla, `git hash-object` con filtros y sin filtros produjo objetos diferentes; estos IDs de objetos Git no son el SHA-256 de la evidencia. Se incorporó en [.gitattributes](../../.gitattributes) una regla para el archivo exacto (abajo se muestra su ubicación actual tras el traslado):
 
 ```gitattributes
-/evidencias/extraccion_20261028_170446.json -text
+/TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json -text
 ```
 
 `-text` desactiva la conversión de finales de línea por Git para esa ruta. No cambia la configuración global ni los bytes actuales. Tras aplicarla, ambos cálculos de objeto coinciden y el SHA-256 original se conserva. No extender la regla a todos los JSON ni volver a guardar la evidencia desde un editor. Después de descargarla en otra computadora, comprobar nuevamente `sha256sum`. Fuente: [documentación oficial de gitattributes](https://git-scm.com/docs/gitattributes).

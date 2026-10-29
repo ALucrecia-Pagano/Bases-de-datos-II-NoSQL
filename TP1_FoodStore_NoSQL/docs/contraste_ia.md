@@ -1,6 +1,6 @@
 # Contraste de IA — plantilla pendiente
 
-Responsable: Lucas, consignas 6–7. Referencias: [plan](plan_trabajo.md) y [reglas](../AGENTS.md).
+Responsable: Lucas, consignas 6–7. Referencias: [plan](plan_trabajo.md) y [reglas](../../AGENTS.md).
 
 ## Registro de la asistencia
 

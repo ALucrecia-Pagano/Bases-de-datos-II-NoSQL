@@ -10,7 +10,9 @@ Fecha del registro documental: 2026-10-28. Ejecución manual: Amanda Pagano, en 
 4. Amanda ejecutó el modo `insertar` en `foodstore_unidad7.pedidos`. La primera captura muestra la validación local satisfactoria y la inserción confirmada de los cinco IDs. El script comprueba los IDs existentes antes de insertar con `insertMany` ordenado.
 5. La segunda captura muestra la salida de verificación satisfactoria. El script incluye una verificación posterior a la inserción y un modo independiente `verificar`; las capturas no permiten determinar si esa salida procede de una ejecución independiente o de la verificación integrada. En ambos casos, la salida documentada corresponde a la comprobación del lote fuente.
 
-Fuente del lote: `evidencias/extraccion_20261028_170446.json`.
+Fuente del lote en la ejecución histórica: `evidencias/extraccion_20261028_170446.json`. Ubicación actual desde la raíz del repositorio: `TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json`.
+
+El traslado organizativo no modifica las capturas, el JSON ni el PDF original. Las rutas visibles en esas evidencias corresponden a la estructura anterior; no acreditan una nueva ejecución con las rutas actuales.
 
 SHA-256 de sus bytes originales, coincidente con ambas capturas y comprobado localmente en esta revisión:
 

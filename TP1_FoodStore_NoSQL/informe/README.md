@@ -6,7 +6,7 @@
 - Conclusión de hasta 200 palabras, con revisión del equipo completo.
 - Adjuntar [consultas_mongodb.js](../mongodb/consultas_mongodb.js) y [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql), o equivalentes.
 - Incluir modelo documental, migración y verificación, consultas, comparación b) y c) por cantidades e IDs, contraste de dos afirmaciones de IA y fundamento de elección tecnológica.
-- Usar evidencias anonimizadas y distinguir propuestas de resultados comprobados según [AGENTS.md](../AGENTS.md).
+- Usar evidencias anonimizadas y distinguir propuestas de resultados comprobados según [AGENTS.md](../../AGENTS.md).
 
 ## Esquema orientativo del PDF
 

@@ -1,6 +1,6 @@
 # Comparación de resultados — plantilla pendiente
 
-Responsable: Mateo, consignas 4–5. Referencias: [plan](plan_trabajo.md), [reglas](../AGENTS.md) y [registro de evidencias](../evidencias/README.md).
+Responsable: Mateo, consignas 4–5. Referencias: [plan](plan_trabajo.md), [reglas](../../AGENTS.md) y [registro de evidencias](../evidencias/README.md).
 
 ## Contexto de ejecución
 

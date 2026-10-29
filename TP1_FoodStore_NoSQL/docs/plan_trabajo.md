@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Preparar un modelo de pedidos con detalles y datos esenciales del cliente; migrar al menos cinco pedidos desde PostgreSQL a MongoDB conservando identificadores, instantes de fecha, estados, cantidades y precios históricos. Las reglas comunes están en [AGENTS.md](../AGENTS.md) y el flujo colaborativo en [CONTRIBUTING.md](../CONTRIBUTING.md).
+Preparar un modelo de pedidos con detalles y datos esenciales del cliente; migrar al menos cinco pedidos desde PostgreSQL a MongoDB conservando identificadores, instantes de fecha, estados, cantidades y precios históricos. Las reglas comunes están en [AGENTS.md](../../AGENTS.md) y el flujo colaborativo en [CONTRIBUTING.md](../../CONTRIBUTING.md).
 
 Referencia académica principal: [consigna oficial de Unidad 7](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf), leída el 2026-10-28. Etapa actual autorizada: documentar la migración ejecutada manualmente por Amanda a partir de sus capturas, sin nuevas ejecuciones ni conexiones del asistente. El [modelo propuesto](modelo_documental.md) conserva su estado pendiente de aprobación del equipo.
 

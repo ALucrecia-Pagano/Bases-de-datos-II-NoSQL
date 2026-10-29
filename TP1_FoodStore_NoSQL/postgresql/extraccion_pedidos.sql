@@ -1,5 +1,5 @@
 -- FoodStore, Unidad 7. Extracción ejecutada manualmente por Amanda y documentada.
--- Registro: docs/resultado_migracion.md. El asistente no ejecutó los motores.
+-- Registro: TP1_FoodStore_NoSQL/docs/resultado_migracion.md. El asistente no ejecutó los motores.
 -- Origen de la extracción documentada: foodstore_dev, esquema public, pedidos 1 a 5.
 -- Destino de la migración documentada: foodstore_unidad7.pedidos; este SQL no crea ni carga MongoDB.
 -- Referencias PREVIAS de Amanda: cinco pedidos, siete detalles, ENTREGADO.

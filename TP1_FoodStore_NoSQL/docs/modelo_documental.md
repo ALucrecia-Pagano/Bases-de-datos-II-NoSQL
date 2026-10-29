@@ -1,6 +1,6 @@
 # Modelo documental — diseño inicial e implementación, consignas 1 y 3
 
-Responsable: Amanda. Fecha: 2026-10-28. **Estado actual: implementado y migrado manualmente por Amanda, con verificación documentada; aprobación grupal pendiente.** Referencias: [plan](plan_trabajo.md), [decisiones](decisiones.md) y [reglas](../AGENTS.md).
+Responsable: Amanda. Fecha: 2026-10-28. **Estado actual: implementado y migrado manualmente por Amanda, con verificación documentada; aprobación grupal pendiente.** Referencias: [plan](plan_trabajo.md), [decisiones](decisiones.md) y [reglas](../../AGENTS.md).
 
 La referencia académica principal es la [consigna oficial](../consignas/BDII_Unidad7_TP_FoodStore_NoSQL.pdf): página 1, consignas 1–3; página 2, consultas y entrega; página 3, correspondencia con la versión real de FoodStore. La consigna 1 pide identificar tablas y claves y esquematizar documentos; la 3 pide dos reglas de integridad y justificar el embebido. La migración de la consigna 2 ya fue ejecutada por Amanda y se documenta en el [resultado](resultado_migracion.md); se conserva el procedimiento inicialmente propuesto como antecedente.
 

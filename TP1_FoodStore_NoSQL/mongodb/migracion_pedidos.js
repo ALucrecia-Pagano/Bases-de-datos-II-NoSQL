@@ -1,13 +1,13 @@
 // FoodStore Unidad 7. Migración ejecutada manualmente por Amanda y documentada.
 // Registro: docs/resultado_migracion.md. El asistente no ejecutó los motores.
-// Fuente fija: evidencias/extraccion_20261028_170446.json (bytes originales).
+// Fuente fija: TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json (bytes originales).
 // SHA-256: 3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243
-// Leer mongodb/README.md. No crea conexiones ni altera la configuración del destino.
+// Leer TP1_FoodStore_NoSQL/mongodb/README.md. No crea conexiones ni altera la configuración del destino.
 // La primera inserción puede crear implícitamente una colección inexistente.
 // Antes de insertar: conexión revisada con retryWrites=false.
 (() => {
   const BASE = "foodstore_unidad7", COLECCION = "pedidos";
-  const FUENTE = "evidencias/extraccion_20261028_170446.json";
+  const FUENTE = "TP1_FoodStore_NoSQL/evidencias/extraccion_20261028_170446.json";
   const SHA = "3973789e22039731d20c1b5227d6907b09fa8065830e88c798264006eeaae243";
   const modo = globalThis.FOODSTORE_MODO || "validar";
   globalThis.FOODSTORE_MODO = "validar"; // No reutilizar una orden de inserción.

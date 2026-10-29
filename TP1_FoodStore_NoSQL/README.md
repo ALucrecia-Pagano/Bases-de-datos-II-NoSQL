@@ -120,7 +120,7 @@ Esta revisión no incluyó nuevas conexiones ni ejecuciones en los motores.
 El [resultado de la migración](docs/resultado_migracion.md) describe el
 procedimiento, las evidencias y los límites de la verificación. Capturas:
 [inserción](evidencias/migracion_insercion.png) y
-[verificación](evidencias/migracion_verificacion.png).
+[verificación](evidencias/migracion_verificacion_amanda.png).
 Las consultas de las consignas 4 y 5 y el análisis de las consignas 6 y 7
 permanecen pendientes.
 

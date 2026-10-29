@@ -25,7 +25,7 @@ SHA-256 de sus bytes originales, coincidente con ambas capturas y comprobado loc
 | Evidencia | Resultado visible | Alcance documental |
 |---|---|---|
 | [migracion_insercion.png](../evidencias/migracion_insercion.png) | Modo `insertar`; destino `foodstore_unidad7.pedidos`; cinco pedidos, siete líneas; `validacionLocal: 'satisfactoria'`; `insercionConfirmada: true`; IDs `Long('1')`, `Long('2')`, `Long('3')`, `Long('4')` y `Long('5')`. | Acredita la salida de confirmación de inserción mostrada por el script ejecutado manualmente por Amanda. |
-| [migracion_verificacion.png](../evidencias/migracion_verificacion.png) | `verificacion: 'satisfactoria'`; `pedidos: 5`; `lineas: 7`; `tiposBSON: 'correctos'`; `correspondencia: 'todos los campos del lote fuente'`; prompt `foodstore_unidad7>`. | Acredita la salida satisfactoria del procedimiento de verificación sobre el lote. |
+| [migracion_verificacion_amanda.png](../evidencias/migracion_verificacion_amanda.png) | `verificacion: 'satisfactoria'`; `pedidos: 5`; `lineas: 7`; `tiposBSON: 'correctos'`; `correspondencia: 'todos los campos del lote fuente'`; prompt `foodstore_unidad7>`. | Acredita la salida satisfactoria del procedimiento de verificación sobre el lote. |
 
 Ambas imágenes muestran la misma referencia al archivo fuente y el SHA-256 indicado. Se conservaron sin cambios; esta documentación las enlaza sin recortarlas ni reemplazarlas.
 

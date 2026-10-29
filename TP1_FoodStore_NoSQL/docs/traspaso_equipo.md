@@ -4,7 +4,7 @@ Registro: 2026-10-28. Aplicar [AGENTS.md](../../AGENTS.md), [CLAUDE.md](../../CL
 
 ## Estado recibido y modelo implementado
 
-Amanda ejecutó manualmente la migración en Compass. Las [capturas de inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion.png), inspeccionadas en la revisión documental, muestran inserción confirmada de los IDs Long 1–5, cinco pedidos, siete líneas, tipos BSON correctos y correspondencia con todos los campos del lote fuente. Ver [resultado y límites](resultado_migracion.md). La aprobación grupal del diseño sigue pendiente; la verificación de migración no completa las consignas 4–7.
+Amanda ejecutó manualmente la migración en Compass. Las [capturas de inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion_amanda.png), inspeccionadas en la revisión documental, muestran inserción confirmada de los IDs Long 1–5, cinco pedidos, siete líneas, tipos BSON correctos y correspondencia con todos los campos del lote fuente. Ver [resultado y límites](resultado_migracion.md). La aprobación grupal del diseño sigue pendiente; la verificación de migración no completa las consignas 4–7.
 
 Destino implementado: `foodstore_unidad7.pedidos`. Cada pedido contiene `_id`, `fecha_hora`, `forma_pago`, `estado`, objeto `cliente`, arreglo `lineas` y `total`.
 

@@ -12,7 +12,7 @@ const { Buffer } = require("buffer");
 
 Se conservaron la comprobación UTF-8, el SHA-256 y los demás controles. Este ajuste ya está en el script; no se modificó en esta etapa documental. La ejecución informada se realizó en Compass; la alternativa externa se mantiene como referencia para otros entornos.
 
-Las capturas de [inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion.png), inspeccionadas el 2026-10-28, muestran inserción confirmada de IDs `Long` 1–5 en `foodstore_unidad7.pedidos` y verificación satisfactoria de cinco pedidos, siete líneas, tipos BSON correctos y correspondencia completa con el lote fuente. No acreditan versiones ni la configuración efectiva de `retryWrites`. No volver a usar el modo `insertar` para repetir una verificación: el script se detendrá si esos IDs ya existen; para una comprobación posterior autorizada corresponde el modo de lectura `verificar`.
+Las capturas de [inserción](../evidencias/migracion_insercion.png) y [verificación](../evidencias/migracion_verificacion_amanda.png), inspeccionadas el 2026-10-28, muestran inserción confirmada de IDs `Long` 1–5 en `foodstore_unidad7.pedidos` y verificación satisfactoria de cinco pedidos, siete líneas, tipos BSON correctos y correspondencia completa con el lote fuente. No acreditan versiones ni la configuración efectiva de `retryWrites`. No volver a usar el modo `insertar` para repetir una verificación: el script se detendrá si esos IDs ya existen; para una comprobación posterior autorizada corresponde el modo de lectura `verificar`.
 
 ## Fuente comprobada mediante archivo
 

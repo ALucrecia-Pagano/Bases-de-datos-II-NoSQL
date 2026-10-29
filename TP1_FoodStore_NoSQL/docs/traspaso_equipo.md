@@ -52,7 +52,7 @@ No es necesario volver a consultar PostgreSQL para reconstruir desde esta extrac
 
 ## Mateo — consignas 4 y 5
 
-Archivos asignados: [consultas_mongodb.js](../mongodb/consultas_mongodb.js), [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql) y [comparacion_resultados.md](comparacion_resultados.md). Actualmente las consultas son plantillas; completarlas y ejecutarlas es tarea pendiente de Mateo.
+Archivos asignados: [consultas_mongodb.js](../mongodb/consultas_mongodb.js), [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql) y [comparacion_resultados.md](comparacion_resultados.md). Las consultas y la comparación fueron ejecutadas por Mateo el 2026-10-29; deben integrarse sus capturas legibles al informe.
 
 Consigna 4: registrar las cuatro consultas MongoDB y sus resultados: a) todos los pedidos con identificador y estado; b) estado existente; c) producto en el arreglo de líneas; d) total superior a un umbral elegido y justificado. Usar los nombres de campos implementados e importes Decimal128 desde texto; no convertir dinero a Number.
 
@@ -65,9 +65,14 @@ Criterios de aceptación:
 - Tabla con cantidades e IDs de pedidos en cada motor y explicación de coincidencias o diferencias; si el origen cambió respecto de la extracción, registrar la diferencia antes de sacar conclusiones. Las cantidades iguales no bastan si los IDs difieren.
 - Archivos con las instrucciones efectivamente ejecutadas y evidencia legible por consulta, sin datos personales ni secretos. La captura interna de verificación de migración no sustituye esas evidencias.
 
-### Referencias esperadas, no resultados de consultas 4–5
+### Resultados ejecutados de consultas 4–5
 
-Según la extracción guardada, se espera que el estado `ENTREGADO` recupere los cinco IDs 1–5 y que el producto ID 1 recupere los pedidos 1, 3 y 5. Los totales del lote por ID son 2800.00, 1500.00, 3150.00, 6200.00 y 1050.00. Son referencias derivadas del archivo para contrastar las futuras consultas; **no acreditan que Mateo las haya ejecutado**. La elección del producto y del umbral debe quedar registrada por Mateo.
+La ejecución registró que el estado `ENTREGADO` recupera los cinco IDs 1–5 y que
+el producto ID 1 recupera los pedidos 1, 3 y 5 en ambos motores. Las cantidades
+y precios históricos coincidieron. En MongoDB, el umbral `Decimal128("3000.00")`
+recuperó los pedidos 3 y 4. La salida completa y los límites están en
+[comparacion_resultados.md](comparacion_resultados.md); las capturas de `psql` y
+`mongosh` deben adjuntarse como evidencia sin contraseñas.
 
 ## Lucas — consignas 6 y 7
 

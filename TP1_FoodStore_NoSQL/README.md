@@ -106,7 +106,7 @@ contraste de afirmaciones de IA y conclusión de hasta 200 palabras.
 - [x] Estructura de las tablas de origen revisada.
 - [x] Modelo documental redactado; aprobación grupal pendiente.
 - [x] Migración ejecutada manualmente por Amanda y verificada según capturas.
-- [ ] Consultas ejecutadas y comparadas.
+- [x] Consultas ejecutadas y comparadas.
 - [ ] Contraste de afirmaciones de IA completado.
 - [ ] Informe final integrado.
 
@@ -121,15 +121,17 @@ El [resultado de la migración](docs/resultado_migracion.md) describe el
 procedimiento, las evidencias y los límites de la verificación. Capturas:
 [inserción](evidencias/migracion_insercion.png) y
 [verificación](evidencias/migracion_verificacion_amanda.png).
-Las consultas de las consignas 4 y 5 y el análisis de las consignas 6 y 7
-permanecen pendientes.
+El [resultado de las consultas y comparación](docs/comparacion_resultados.md)
+documenta la ejecución posterior de las consignas 4 y 5 por Mateo, con sus
+evidencias correspondientes. El análisis de las consignas 6 y 7, la revisión
+grupal y el informe final permanecen pendientes.
 
 ## Rutas de ejecución actuales
 
 Los ejemplos parten de la raíz del repositorio y requieren autorización específica antes de conectar motores. No repetir la migración ya realizada. `FOODSTORE_RAIZ` conserva la raíz del repositorio, sin agregar la carpeta del TP. Consultar la [guía MongoDB](mongodb/README.md) para modos, destino y precauciones.
 
 - En una sesión nueva de psql conectada al origen autorizado `foodstore_dev`, cargar la extracción completa con `\i TP1_FoodStore_NoSQL/postgresql/extraccion_pedidos.sql`.
-- Los archivos de consultas pendientes son `TP1_FoodStore_NoSQL/postgresql/consultas_postgresql.sql` y `TP1_FoodStore_NoSQL/mongodb/consultas_mongodb.js`; siguen siendo plantillas, no consultas completadas.
+- Los archivos de consultas ejecutados son `TP1_FoodStore_NoSQL/postgresql/consultas_postgresql.sql` y `TP1_FoodStore_NoSQL/mongodb/consultas_mongodb.js`; sus resultados se documentan en `TP1_FoodStore_NoSQL/docs/comparacion_resultados.md`.
 - En una shell compatible, la ruta de carga del script es `load("C:/RUTA/AL/REPO/TP1_FoodStore_NoSQL/mongodb/migracion_pedidos.js")`, con raíz y modo definidos según la guía.
 
 Las ejecuciones anteriores usaron la estructura previa al traslado. El JSON, las capturas y la consigna PDF se conservan sin cambios; las rutas que muestran son históricas.

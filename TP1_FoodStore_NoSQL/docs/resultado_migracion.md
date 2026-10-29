@@ -60,4 +60,4 @@ Esta explicación proviene de la revisión del código y de la salida mostrada; 
 
 La migración del lote está **ejecutada manualmente por Amanda y verificada según las evidencias inspeccionadas**. Este registro no declara aprobación grupal del diseño ni resuelve la consulta pendiente sobre suficiencia académica del cliente con ID y alias.
 
-Permanecen pendientes las consultas y comparaciones de las consignas 4 y 5 (Mateo), el análisis y contraste de IA de las consignas 6 y 7 (Lucas), y la revisión grupal de conclusión e informe. Las verificaciones internas de migración no sustituyen esas consultas ni sus evidencias. No se modificaron los scripts, las evidencias originales ni las tareas de otros integrantes.
+Las consultas y comparación de las consignas 4 y 5 fueron ejecutadas posteriormente por Mateo y están documentadas en [comparacion_resultados.md](comparacion_resultados.md). Permanecen pendientes el análisis y contraste de IA de las consignas 6 y 7 (Lucas), y la revisión grupal de conclusión e informe. Las verificaciones internas de migración no sustituyen las evidencias específicas de las consultas.

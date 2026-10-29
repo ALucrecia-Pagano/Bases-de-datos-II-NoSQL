@@ -66,7 +66,7 @@ Estado de la preparación documental:
 - [x] Código de migración preparado desde el archivo real, con instrucciones y verificaciones posteriores.
 - [x] Amanda informó la ejecución manual del script en Compass; se inspeccionaron las capturas de inserción y verificación.
 - [x] Migración de cinco pedidos y siete líneas ejecutada manualmente por Amanda y verificada según las evidencias inspeccionadas.
-- [ ] Consignas 4–5: consultas ejecutadas y comparación documentada (Mateo).
+- [x] Consignas 4–5: consultas ejecutadas y comparación documentada (Mateo).
 - [ ] Consignas 6–7: consulta a IA, contraste de dos afirmaciones y borrador de conclusión completados (Lucas).
 - [ ] Informe final integrado y conclusión revisados por el equipo.
 
@@ -100,13 +100,33 @@ Se inspeccionaron visualmente [migracion_insercion.png](../evidencias/migracion_
 
 El [resultado de migración](resultado_migracion.md) registra procedimiento, resultados y límites. Amanda realizó la ejecución en Compass; el asistente revisó archivos y capturas, sin conectarse a motores. Para Compass fue necesaria la importación explícita de `Buffer` mediante `require("buffer")`, sin cambiar la evidencia ni su hash. La hora exacta de migración, las versiones de MongoDB/Compass y la configuración efectiva de `retryWrites` no se acreditan en las imágenes.
 
-Las verificaciones de migración no completan las consignas 4–5 ni 6–7; esas tareas y la aprobación grupal del diseño siguen pendientes.
+Las verificaciones de migración no completan por sí solas las consignas 4–5 ni 6–7. Las consignas 4–5 se documentan en la sección siguiente; 6–7 y la aprobación grupal del diseño siguen pendientes.
+
+### Consultas 4–5 ejecutadas por Mateo — 2026-10-29
+
+Se ejecutaron las cuatro consultas MongoDB y las equivalentes PostgreSQL de b) y c)
+en instalaciones locales. MongoDB Server fue 9.0.4 con `mongosh` 2.14.0 y
+PostgreSQL fue 17.10 mediante `psql`. La migración local se validó e insertó en
+`foodstore_unidad7.pedidos`, con cinco pedidos, siete líneas y verificación
+satisfactoria de tipos BSON y correspondencia con la extracción nueva.
+
+Resultados observados:
+
+- MongoDB y PostgreSQL devolvieron los IDs 1–5 para el estado `ENTREGADO`.
+- Ambos motores devolvieron los IDs 1, 3 y 5 para el producto ID 1.
+- Las cantidades y precios históricos coincidieron: (1, 2, 1000.00),
+  (3, 3, 1050.00) y (5, 1, 1050.00).
+- MongoDB devolvió los pedidos 3 y 4 para totales mayores que 3000.00.
+
+La comparación completa está en [comparacion_resultados.md](comparacion_resultados.md).
+Las capturas de las salidas de `mongosh` y `psql` deben conservarse como
+evidencias legibles junto con el informe; no deben incluir contraseñas.
 
 ### Entrega académica prevista
 
 - PDF de hasta cinco páginas, sin contar código adjunto, con conclusión de hasta 200 palabras.
-- [consultas_mongodb.js](../mongodb/consultas_mongodb.js) y [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql): actualmente solo comentarios.
-- Modelo, comparación y contraste en las plantillas de `docs/`; evidencias según [su guía](../evidencias/README.md).
+- [consultas_mongodb.js](../mongodb/consultas_mongodb.js) y [consultas_postgresql.sql](../postgresql/consultas_postgresql.sql): consultas ejecutables de las consignas 4–5.
+- Modelo, comparación y contraste en los documentos de `docs/`; evidencias según [su guía](../evidencias/README.md).
 - Esquema y requisitos del informe en [informe/README.md](../informe/README.md).
 
-Esta documentación no autoriza nuevas conexiones ni ejecuciones en motores. El diseño conserva su estado propuesto; la extracción manual de Amanda está documentada mediante archivo y la migración ejecutada y verificada mediante capturas inspeccionadas. Permanecen pendientes las consultas, la comparación, el análisis de IA y la revisión grupal del informe. No se modificaron los archivos de consultas ni los documentos de otros integrantes.
+Esta documentación no autoriza nuevas conexiones ni ejecuciones en motores. El diseño conserva su estado propuesto; la extracción local de Mateo, la migración y las consultas de las consignas 4–5 quedan documentadas con sus resultados y límites. Permanecen pendientes el análisis de IA, la conclusión y la revisión grupal del informe.
